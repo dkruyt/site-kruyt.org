@@ -1,23 +1,33 @@
-+++
-author = "Dennis Kruyt"
-categories = ["mysql", "mariadb", "performance", "tuning"]
-date = 2019-09-24T03:36:00Z
-description = ""
-draft = false
-image = "/content/images/2019/10/photo-1532393950032-b666e39c29b3.jpeg"
-slug = "mysql-tuning"
-summary = "At my work in the past I needed to trouble shoot and tune MySQL installations. Here are some best practises I have used."
-tags = ["mysql", "mariadb", "performance", "tuning"]
-title = "MySQL tuning"
+---
+author: Dennis Kruyt
+categories:
+  - mysql
+  - mariadb
+  - performance
+  - tuning
+date: 2019-09-24T03:36:00.000Z
+description: ''
+draft: false
+cover:
+  image: /content/images/2019/10/photo-1532393950032-b666e39c29b3.jpeg
+slug: mysql-tuning
+summary: >-
+  At my work in the past I needed to trouble shoot and tune MySQL installations.
+  Here are some best practises I have used.
+tags:
+  - mysql
+  - mariadb
+  - performance
+  - tuning
+title: MySQL tuning
 
-+++
-
+---
 
 ### innodb_buffer_pool_size
 
 The default innodb_buffer_pool_size after a MySQL installation is too small, maybe  10M, this value is standard and too small for a dedicated large production environment.
 
-{{< figure src="https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ" caption="Photo by <a href="https://unsplash.com/@etiennegirardet?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Etienne Girardet</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a>" >}}
+![Pool](pool.jpg 'Pool')
 
 To determine the maximum minimum value, the InnoDB data and indexes must be looked at. The following query gives the RIBPS, Recommended InnoDB Buffer Pool Size with an additional 30% growth. This value may be set to 80% of the memory. But this is only allowed if InnoDB is the only storage engine being used. I the same database is also using for example MyISAM, then this value must not be too high of the available memory and there must also be memory left for the MyISAM engine.
 
@@ -81,7 +91,7 @@ Buffer pool hit rate 1000 / 1000
 
 The MyISAM storage engine uses a key buffer for caching index data from disk. A correct value can improve performance.
 
-{{< figure src="https://images.unsplash.com/photo-1557133285-a2b6b21f6e13?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ" caption="Photo by <a href="https://unsplash.com/@mangofantasy?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Tim Johnson</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a>" >}}
+![Buffer](train.jpg 'Buffer')
 
 The key counters can be read with the following query.
 
@@ -114,7 +124,7 @@ The current key_buffer is 384M, this seems to be sufficient for now, possibly it
 
 To generate an overview of recommendations for a running database, MySQLTuner-perl can be used. However, it is advisable to first test these recommendations on an acceptance database and todo some performance test on them before taking into production.
 
-{{< figure src="https://images.unsplash.com/photo-1421878512040-134f5e04e971?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ" caption="Photo by <a href="https://unsplash.com/@marcin?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Marcin Nowak</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a>" >}}
+![Tuner](gitar.jpg)
 
 MysqlTunner-perl can be downloaded from the following website[http://mysqltuner.com/](https://mysqltuner.com/)
 
@@ -122,7 +132,7 @@ MysqlTunner-perl can be downloaded from the following website[http://mysqltuner.
 
 To gain insight into which queries last longer than X seconds, you can activate a slow query. In the case of a production database, this should only be used for troubleshooting, as this affects the performance of the database. So by default on production slow query logging must be switched off!
 
-{{< figure src="https://images.unsplash.com/photo-1558896548-cbdf8e7f12e8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ" caption="Photo by <a href="https://unsplash.com/@yuli_superson?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Yuliya Kosolapova</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a>" >}}
+![Slow](snail.jpg)
 
 You can turn this on / off without restarting the database.
 
@@ -168,7 +178,7 @@ FLUSH LOGS;
 
 Monitoring is key, always collect, store and analyse your metrics. Without this you don't know what impact your changes will have on your database server, linux system and eventually on your application.
 
-{{< figure src="https://images.unsplash.com/photo-1509041172795-d4869fe4a9eb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ" caption="Photo by <a href="https://unsplash.com/@amutiomi?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Miguel A. Amutio</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a>" >}}
+![Level](waterlevel.jpg)
 
 There are many opensource tooling that can do this. Some tools I have used in the past that can mesure MySQL metrics are Observium and the TIG stack, TeleGraf, InfluxDB and Grafana.
 
