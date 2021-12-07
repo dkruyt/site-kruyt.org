@@ -34,3 +34,6 @@ params:
     URL: "https://github.com/dkruyt/site-kruyt.org/blob/main/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
+
+  comments: true
+
