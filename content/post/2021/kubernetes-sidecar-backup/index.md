@@ -1,7 +1,7 @@
 ---
 author: Dennis Kruyt
 categories:
-- kuberenetes
+- kubernetes
 - volume
 - sidecar
 - backup
