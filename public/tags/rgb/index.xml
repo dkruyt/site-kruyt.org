@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>rgb on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/rgb/</link>
+    <description>Recent content in rgb on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Jun 2011 21:03:46 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/rgb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Equilux a Arduino clock</title>
+      <link>https://kruyt.org/arduino-equilux-clock/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/arduino-equilux-clock/</guid>
+      <description>I created a Arduino controled led clock with 60 rgb led&amp;rsquo;s. This one is inspired by the Equinox Clock from Bram Knaapen.
+LED strip For the 60 RGB leds I use a string of RGB leds that I order directly from China, each of those leds has a LPD6803 IC. A arduino library for this string can be found at adafruit&amp;rsquo;s github.
+Time Keeping For time keeping I am using a a RTC DS1307 that is connected via I2C to pin A4 and A5 on the Arduino.</description>
+    </item>
+    
+  </channel>
+</rss>

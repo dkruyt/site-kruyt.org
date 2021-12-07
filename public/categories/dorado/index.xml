@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>dorado on Dennis Kruyt</title>
+    <link>https://kruyt.org/categories/dorado/</link>
+    <description>Recent content in dorado on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Jan 2018 21:51:48 +0000</lastBuildDate><atom:link href="https://kruyt.org/categories/dorado/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Huawei Dorado all flash metrics in Grafana</title>
+      <link>https://kruyt.org/huawei-dorado-all-flash-metrics-in-grafana/</link>
+      <pubDate>Thu, 11 Jan 2018 21:51:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/huawei-dorado-all-flash-metrics-in-grafana/</guid>
+      <description>Recently I got my hands on a nice all flash storage from Huawei, the Dorado 5000. Off course I wanted to see if my Grafana dashboard I created for the Huawei Oceanstor series was also working on the Dorado, most is working, but some mibs are different and not all performance metrics that are availble on the Oceanstor are on the Dorado. So I adjusted the Telegraf and Grafana dashboard to work correclty with the Dorado.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Dennis Kruyt</title>
+    <link>https://kruyt.org/</link>
+    <description>Recent content on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Sep 2021 07:40:52 +0000</lastBuildDate><atom:link href="https://kruyt.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes SideCar Backup</title>
+      <link>https://kruyt.org/kubernetes-sidecar-backup/</link>
+      <pubDate>Wed, 29 Sep 2021 07:40:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/kubernetes-sidecar-backup/</guid>
+      <description>kscb is a sidecar container, that is based upon rclone with a crontab. The sidecar container in the pod has access to the PV mount and the data on it, Rclone can then easily copy/sync to a public/private storage provider</description>
+    </item>
+    
+    <item>
+      <title>Migrate from Docker to Containerd in Kubernetes</title>
+      <link>https://kruyt.org/migrate-docker-containerd-kubernetes/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/migrate-docker-containerd-kubernetes/</guid>
+      <description>Kubernetes is deprecating Docker as a container runtime after v1.20. Don&amp;rsquo;t Panic 😱 Docker containers are still supported, but the dockershim/Docker, the layer between Kubernetes and containerd is deprecated and will be removed from version 1.22+.
+Don’t Panic: Kubernetes and Docker Authors: Jorge Castro, Duffie Cooley, Kat Cosgrove, Justin Garrison, Noah Kantrowitz, Bob Killen, Rey Lejano, Dan “POP” Papandrea, Jeffrey Sica, Davanum “Dims” Srinivas\nKubernetes is deprecating Docker as a container runtime after v1.</description>
+    </item>
+    
+    <item>
+      <title>Running a mailserver in Kubernetes</title>
+      <link>https://kruyt.org/running-a-mailserver-in-kubernetes/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/running-a-mailserver-in-kubernetes/</guid>
+      <description>Running a webserver in Kubernetes is easy, but a mailserver is more challenging. Most of the challenging things has todo with your ip infrastructure, ingress and loadbalancer within Kubernetes. Here are things I learned when I was deploying a mailserver based on Postfix on Kubernetes with metallb and nginx ingress. If you have a different setup, things could apply or not.
+Prevent mail loops on your secondary MX Your postfix MX pod is running maybe on a private ip RFC1918, this is fine.</description>
+    </item>
+    
+    <item>
+      <title>Varnish in Kubernetes</title>
+      <link>https://kruyt.org/varnish-kuberenets/</link>
+      <pubDate>Tue, 15 Sep 2020 18:50:45 +0000</pubDate>
+      
+      <guid>https://kruyt.org/varnish-kuberenets/</guid>
+      <description>This is a simple minimal but highly configurable Varnish caching service for Kubernetes. This should be placed between your ingress and your application service.
+  simple setup
+  It can be used in combination with multiple ingresses and application services at the same time.
+  multiple ingress and services
+  Setup Apply the following yaml file, replicas and environment variables can be adjusted to your need.</description>
+    </item>
+    
+    <item>
+      <title>Fortinet Fortigate in Grafana</title>
+      <link>https://kruyt.org/fortigate_grafana/</link>
+      <pubDate>Sun, 21 Jun 2020 17:34:12 +0000</pubDate>
+      
+      <guid>https://kruyt.org/fortigate_grafana/</guid>
+      <description>To get metrics from your FortiGate in Grafana using Telegraf and InfluxDB.
+ Enable SNMP on your FortiGate Put the following telegraf config in your /etc/telegraf/telegraf.d directory Edit the the agent IP and community string as appropriate  # # Retrieves SNMP values from remote agents [[inputs.snmp]] agents = [ &amp;quot;192.168.1.1:161&amp;quot; ] timeout = &amp;quot;10s&amp;quot; retries = 3 version = 2 community = &amp;quot;monitoring&amp;quot; # ## SNMPv3 auth parameters sec_name = &amp;quot;sec_name&amp;quot; auth_protocol = &amp;quot;SHA&amp;quot; # Values: &amp;quot;MD5&amp;quot;, &amp;quot;SHA&amp;quot;, &amp;quot;&amp;quot; auth_password = &amp;quot;auth_pass&amp;quot; sec_level = &amp;quot;authPriv&amp;quot; # Values: &amp;quot;noAuthNoPriv&amp;quot;, &amp;quot;authNoPriv&amp;quot;, &amp;quot;authPriv&amp;quot; # #context_name = &amp;quot;&amp;quot; priv_protocol = &amp;quot;AES&amp;quot; # Values: &amp;quot;DES&amp;quot;, &amp;quot;AES&amp;quot;, &amp;quot;&amp;quot; priv_password = &amp;quot;priv_pass&amp;quot; name = &amp;quot;FortiGate&amp;quot; [[inputs.</description>
+    </item>
+    
+    <item>
+      <title>Passed the Red Hat RHCSA exam</title>
+      <link>https://kruyt.org/i-passed-the-rhcsa-exam/</link>
+      <pubDate>Thu, 06 Feb 2020 18:16:23 +0000</pubDate>
+      
+      <guid>https://kruyt.org/i-passed-the-rhcsa-exam/</guid>
+      <description>Today I passed the Red Hat RHCSA exam with the maximum 300/300 100% score! 😁
+I had a good feeling during the exam, and after about an hour I got the following email from Red Hat.
+The results of your recent EX200 Red Hat Certified System Administrator Exam are reported below. Passing score: 210 Your score: 300 Result: PASS Congratulations -- you have earned the Red Hat Certified System Administrator certification.</description>
+    </item>
+    
+    <item>
+      <title>SUSE SLES 15 Container in LXD</title>
+      <link>https://kruyt.org/suse-sles-15-container-in-lxd/</link>
+      <pubDate>Mon, 20 Jan 2020 19:48:06 +0000</pubDate>
+      
+      <guid>https://kruyt.org/suse-sles-15-container-in-lxd/</guid>
+      <description>I am a big fan of LXD and lot of my &amp;lsquo;home infra&amp;rsquo; and VPS&amp;rsquo;s are all running LXD container. Also I am using LXD at work to create test setup for al sorts of Linux OS&amp;rsquo;s and applications. Most &amp;ldquo;free&amp;rdquo; Linux OS&amp;rsquo;s are already in the LXD image repository. But sometime&amp;rsquo;s I need a non free Linux OS. Such as SUSE Linux Enterprise Server, or SLES for short. Off-course I can run this in a VPS just by installing it from an ISO.</description>
+    </item>
+    
+    <item>
+      <title>Ansible CICD pipeline with GitLab</title>
+      <link>https://kruyt.org/ansible-ci-with-gitlab/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/ansible-ci-with-gitlab/</guid>
+      <description>In this post I will show how I use GitLab CICD with Ansible. I&amp;rsquo;ll show the pipelines and how the merge requests are handled for full control and auditing.
+GitLab flow The GitLab flow is as following, you have one or more dev/working branches. To push code to the staging environment you do this via an merge request in GitLab, en to get this code in to production. Again via a merge request from the master branch to the production branch.</description>
+    </item>
+    
+    <item>
+      <title>3d print project, lampshade</title>
+      <link>https://kruyt.org/3d-print-project-lampshade/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/3d-print-project-lampshade/</guid>
+      <description>A couple of weeks ago I gave myself a 3d print for a present. 😝 I opted for a Creality Ender 3 pro and order it from Ali Express. With the first print I was amazed how good the quality now is on these budget printers. My last experience with 3d printing was about 10 years ago and the quality was quite different then on budget printers. So I am quite happy with this printer.</description>
+    </item>
+    
+    <item>
+      <title>Ghost blog caching with Varnish</title>
+      <link>https://kruyt.org/ghost-blog-caching-with-varnish/</link>
+      <pubDate>Sun, 06 Oct 2019 19:13:15 +0000</pubDate>
+      
+      <guid>https://kruyt.org/ghost-blog-caching-with-varnish/</guid>
+      <description>In this post I show a few of my tip&amp;rsquo;s for using Varnish for caching and Ghost together.
+Don&amp;rsquo;t cache everything Caching is good, but we don&amp;rsquo;t want to cache everything in ghost, we don&amp;rsquo;t want to cache the admin and preview pages in ghost. Add the following in the sub vcl_recv part.
+# Did not cache the admin and preview pages if (req.url ~ &amp;#34;/(admin|p|ghost)/&amp;#34;) { return (pass); } restart Varnish to activate the changes.</description>
+    </item>
+    
+    <item>
+      <title>ZeroTier on a Ubiquiti EdgeRouter (part 2)</title>
+      <link>https://kruyt.org/zerotier-on-edgerouter-p2/</link>
+      <pubDate>Fri, 27 Sep 2019 14:30:27 +0000</pubDate>
+      
+      <guid>https://kruyt.org/zerotier-on-edgerouter-p2/</guid>
+      <description>In my previous post I showed how to install ZeroTier on the EdgeRouter, after installing we need to rename the ZeroTier interface to ethx interface to show up in EdgeOS.
+ZeroTier on a Ubiquiti EdgeRouter With the new EdgeOS version 2 firmware for the EdgeRouter it is now possible to install ZeroTier on this router. Dennis Kruyt Kruyt.org      Now I adopted EdgeOS (which is basically VyOS/Vyatta running on the EdgeRouter) to support ZeroTier from the native CLI with tab completion.</description>
+    </item>
+    
+    <item>
+      <title>Linux disk performance tuning</title>
+      <link>https://kruyt.org/linux-disk-tuning/</link>
+      <pubDate>Sun, 22 Sep 2019 18:22:49 +0000</pubDate>
+      
+      <guid>https://kruyt.org/linux-disk-tuning/</guid>
+      <description>Some option in Linux that can be used for disk related performance tuning.</description>
+    </item>
+    
+    <item>
+      <title>Instagram/Facebook HELO/SPF fail</title>
+      <link>https://kruyt.org/instragram-mail-server/</link>
+      <pubDate>Fri, 13 Sep 2019 03:36:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/instragram-mail-server/</guid>
+      <description>I am trying to get an email from instagram, but I wasn&amp;rsquo;t receiving it. Upon checking my mail logs I see the following log message.
+Sep 13 03:50:51 mailserver postfix/smtpd[28105]: NOQUEUE: reject: RCPT from 66-220-155-156.mail-mail.facebook.com[66.220.155.156]: 550 5.7.1 &amp;lt;dennis@kruyt.org&amp;gt;: Recipient address rejected: Message rejected due to: domain owner discourages use of this host. Please see http://www.openspf.net/Why?s=helo;id=mx-out.facebook.com;ip=66.220.155.156;r=dennis@kruyt.org; from=&amp;lt;security@mail.instagram.com&amp;gt; to=&amp;lt;dennis@kruyt.org&amp;gt; proto=ESMTP helo=&amp;lt;mx-out.facebook.com&amp;gt; So the mail is SPF (Sender Policy Framework) failing. Email domains use this protocol to specify which mail hosts are authorised to use this domain in the SMTP HELO and MAIL FROM commands.</description>
+    </item>
+    
+    <item>
+      <title>ZeroTier on a Ubiquiti EdgeRouter</title>
+      <link>https://kruyt.org/zerotier-on-a-ubiquiti-edgerouter/</link>
+      <pubDate>Sat, 31 Aug 2019 17:36:31 +0000</pubDate>
+      
+      <guid>https://kruyt.org/zerotier-on-a-ubiquiti-edgerouter/</guid>
+      <description>With the new EdgeOS version 2 firmware for the EdgeRouter it is now possible to install ZeroTier on this router.</description>
+    </item>
+    
+    <item>
+      <title>My BBQ creations</title>
+      <link>https://kruyt.org/my-bbq-creations/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/my-bbq-creations/</guid>
+      <description>My Kamado&amp;rsquo;s This is where the magic happens.
+  Smoked Pork belly            Chicken Tandoor style in a Kamado         Porchetta      Vulcan bread      Angus Uruguay Grain Fed Pichana      </description>
+    </item>
+    
+    <item>
+      <title>Fortinet FortiADC in Grafana</title>
+      <link>https://kruyt.org/fortinet-fortiadc-in-grafana/</link>
+      <pubDate>Wed, 21 Aug 2019 06:44:10 +0000</pubDate>
+      
+      <guid>https://kruyt.org/fortinet-fortiadc-in-grafana/</guid>
+      <description>FortiADC is is a application delivery controllers (loadbalancer). The devices metrics are availalbe via SNMP. So it&amp;rsquo;s quite easy to collect those and display them in Grafana.
+Pre Install Make sure you have installed InfluxDB as the time-series database Telegraf as collector first. Optional you can also include the FortiADC logs when they are in elasticsearch. I use the Greylog sollution for this.
+Quick Start Get the latest files, at my GitHub page</description>
+    </item>
+    
+    <item>
+      <title>Cisco WLC in Grafana</title>
+      <link>https://kruyt.org/cisco-wlc-in-grafana/</link>
+      <pubDate>Tue, 20 Aug 2019 05:02:36 +0000</pubDate>
+      
+      <guid>https://kruyt.org/cisco-wlc-in-grafana/</guid>
+      <description>  </description>
+    </item>
+    
+    <item>
+      <title>Docsis stats from ARRIS Ziggo modem</title>
+      <link>https://kruyt.org/statistics-from-arris-ziggo-cable-modem/</link>
+      <pubDate>Fri, 16 Aug 2019 14:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/statistics-from-arris-ziggo-cable-modem/</guid>
+      <description>I have at home a Ziggo cable internet connection. The modem that Ziggo provides is a Arris modem. I have this modem in bridge mode because I have my own router. But I like to get some DOCSIS statistics from this modem. The modem provide these via a kind of web snmp output, but this is not very useful.
+  Ziggo Connect box
+  To parse this output into something more readable I create a crude oneliner script.</description>
+    </item>
+    
+    <item>
+      <title>MOINK Balls</title>
+      <link>https://kruyt.org/moinkballs/</link>
+      <pubDate>Thu, 15 Aug 2019 13:26:12 +0000</pubDate>
+      
+      <guid>https://kruyt.org/moinkballs/</guid>
+      <description>MOINK Balls? What is a MOINK? The name MOINK is a fusion of the sounds the animals (meat) from which these balls are made, Moo and Oink. Moo for the ground beef and Oink of the bacon of course.
+The original idea for this is from Larry of the BBQ-Brethren Forum. This is my twist on that.
+Ingredients • 750 gram of ground beef• 40 gram of Parmesan cheese • One Egg• A couple of garlic cloves• A tea spoon of Salt• A tea spoon of Pepper• 100 ml milk• Dried Oregano• About twenty Beacon strips• BBQ Saus• Your favourite BBQ Rub• 60 gram of breadcrumbs• Toothpicks for the balls</description>
+    </item>
+    
+    <item>
+      <title>Zabbix Pushover Alert script</title>
+      <link>https://kruyt.org/zabbix-pushover-alert-script/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/zabbix-pushover-alert-script/</guid>
+      <description>At home and at work we are running Zabbix for monitoring, for alerting I use Pushover. There are some scripts that have Zabbix and Pushover integration on share.zabbix.com, but none of them have priority support and have inline image for Pushover.
+On my GitHub you can find a alertscript for Zabbix and Pushover. Pushover has also a dark theme, but the Zabbix graphs are still light. So there is an option in the script to invert the graphs.</description>
+    </item>
+    
+    <item>
+      <title>Solis Ginlong Inverter Statistics Scraper</title>
+      <link>https://kruyt.org/ginlong-scraper/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/ginlong-scraper/</guid>
+      <description>I have a Solis 5K-G Single Phase Inverter with a Ginlong LAN stick. This stick logs statistics of this inverter every 5 minutes to the Ginlong monitoring pages.
+  Ginlong Solis Inverter
+  I want use those statistics on the Ginlong site for my own analyses en domotica. To get those statistics to my own systems I created a python script that scrapes PV and inverter statistics from the Ginlong monitor pages every 5 min.</description>
+    </item>
+    
+    <item>
+      <title>DarkSome theme switcher for macOS</title>
+      <link>https://kruyt.org/darksome/</link>
+      <pubDate>Thu, 06 Sep 2018 17:35:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/darksome/</guid>
+      <description>Apple&amp;rsquo;s new macOS 10.14 codename Mojave has a nice dark theme, but to change it you need to go click trough multiple screens to change the theme.
+To switch fast and simple I created a Menu Bar App for this. It does exactly what you see below with a mouse click. To switch theme, click left, to exit click right on the moon/sun icon.
+The source code you can find on my GitHub page, the app it self DarkSome you can download it below.</description>
+    </item>
+    
+    <item>
+      <title>ScaleWay vs Hetzner</title>
+      <link>https://kruyt.org/scaleway-vs-hetzner/</link>
+      <pubDate>Thu, 19 Jul 2018 18:59:35 +0000</pubDate>
+      
+      <guid>https://kruyt.org/scaleway-vs-hetzner/</guid>
+      <description>I am looking for a new not so expensive VPS provider. When I was looking arround for something that would suit my needs I came up with ScaleWay and Hetzner as possible candidates.</description>
+    </item>
+    
+    <item>
+      <title>ETAG headers in a load balanced farm</title>
+      <link>https://kruyt.org/etag/</link>
+      <pubDate>Fri, 29 Jun 2018 18:28:29 +0000</pubDate>
+      
+      <guid>https://kruyt.org/etag/</guid>
+      <description>When I was looking at some Nginx caching settings to improve them on a load balanced static content farm. I noticed that the etag headers difference between servers for the same file when they should be the same.
+So first what is a etag header?
+From WikipediA
+ The ETag or entity tag is part of HTTP, the protocol for the World Wide Web. It is one of several mechanisms that HTTP provides for web cache validation, which allows a client to make conditional requests.</description>
+    </item>
+    
+    <item>
+      <title>Huawei FAT WLAN Access Points in Grafana</title>
+      <link>https://kruyt.org/huawei-fat-wlan-access-points-in-grafana/</link>
+      <pubDate>Thu, 11 Jan 2018 22:20:20 +0000</pubDate>
+      
+      <guid>https://kruyt.org/huawei-fat-wlan-access-points-in-grafana/</guid>
+      <description>With Huawei Enterprise Access points you have different firmware versions for different deployment scenarios. A FIT version for when you have an Wireless Access Controller (AC). This AC will managed all your AP and you have metrics available from within the AC. Huawei also offers a FAT version of the firmware for the AP. This is an standalone verion and there is no central management and overview of your AP&amp;rsquo;s with the FAT version.</description>
+    </item>
+    
+    <item>
+      <title>Huawei Dorado all flash metrics in Grafana</title>
+      <link>https://kruyt.org/huawei-dorado-all-flash-metrics-in-grafana/</link>
+      <pubDate>Thu, 11 Jan 2018 21:51:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/huawei-dorado-all-flash-metrics-in-grafana/</guid>
+      <description>Recently I got my hands on a nice all flash storage from Huawei, the Dorado 5000. Off course I wanted to see if my Grafana dashboard I created for the Huawei Oceanstor series was also working on the Dorado, most is working, but some mibs are different and not all performance metrics that are availble on the Oceanstor are on the Dorado. So I adjusted the Telegraf and Grafana dashboard to work correclty with the Dorado.</description>
+    </item>
+    
+    <item>
+      <title>LizardFS in Grafana</title>
+      <link>https://kruyt.org/lizardfs-in-grafana/</link>
+      <pubDate>Mon, 14 Aug 2017 19:59:32 +0000</pubDate>
+      
+      <guid>https://kruyt.org/lizardfs-in-grafana/</guid>
+      <description>This plugin/script for Telegraf will collect the metrics from LizardFS and stores it into InfluxDB, then you can view your metrics in Grafana on a templated dashboard.</description>
+    </item>
+    
+    <item>
+      <title>Postfix and TLS encryption</title>
+      <link>https://kruyt.org/postfix-and-tls-encryption/</link>
+      <pubDate>Fri, 04 Aug 2017 19:05:26 +0000</pubDate>
+      
+      <guid>https://kruyt.org/postfix-and-tls-encryption/</guid>
+      <description>With hackers around every corner, governments wants to read your emails, now a days encryption is a necessity. Now most major sites are only available on https, and more and more IM are using encryption. But what about and old protocol email that is still very popular and we cant go without it any more. How can we increase security for this?
+Of course you can use S/MIME or PGP and have end to end encryption, but the problem that in transit between mail servers the from, to, cc, and subject fields are not encrypted.</description>
+    </item>
+    
+    <item>
+      <title>Barnyard2: Data too long</title>
+      <link>https://kruyt.org/barnyard2_data_to_long/</link>
+      <pubDate>Mon, 24 Jul 2017 19:33:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/barnyard2_data_to_long/</guid>
+      <description>After I logged into Snorby to check some events on our IDS. I notice that one of my sensors didn&amp;rsquo;t return any events any more into the database.
+I log in the sensors and I notice that Barnyard2 wasn&amp;rsquo;t running any more. Barnyard2 parses the Snort logs and inserts the min the database. So I started the service again and after a few minutes it stoped running again.
+Upon inspection of the logs I fount this warning.</description>
+    </item>
+    
+    <item>
+      <title>Huawei OceanStor metrics in Grafana</title>
+      <link>https://kruyt.org/oceanstor_grafana/</link>
+      <pubDate>Sat, 22 Jul 2017 19:27:02 +0000</pubDate>
+      
+      <guid>https://kruyt.org/oceanstor_grafana/</guid>
+      <description>I manage a couple of storages at work. I got a few Huawei OceanStor storages. v2 as wel v3 storages. There is some commercial tooling from Huawei available to gather metrics, but that didn&amp;rsquo;t fit my needs. I found out that all or almost all metrics that I need are available via SNMP. So it was not hard to setup a Grafana dashboard with all metrics.
+Pre install Make sure you have installed InfluxDB as the time-series database Telegraf as the collector first.</description>
+    </item>
+    
+    <item>
+      <title>zswap metrics with Telegraf</title>
+      <link>https://kruyt.org/telegraf-zswap/</link>
+      <pubDate>Wed, 19 Jul 2017 20:04:51 +0000</pubDate>
+      
+      <guid>https://kruyt.org/telegraf-zswap/</guid>
+      <description>A couple of weeks ago I discover zswap.
+ zswap is a Linux kernel feature that provides a compressed write-back cache for swapped pages, as a form of virtual memory compression. Instead of moving memory pages to a swap device when they are to be swapped out, zswap performs their compression and then stores them into a memory pool dynamically allocated in the system RAM. Later writeback to the actual swap device is deferred or even completely avoided, resulting in a significantly reduced I/O for Linux systems that require swapping; the tradeoff is the need for additional CPU cycles to perform the compression.</description>
+    </item>
+    
+    <item>
+      <title>Imperial march on floppy drives</title>
+      <link>https://kruyt.org/imperial-march-on-floppy-drives/</link>
+      <pubDate>Sat, 24 Mar 2012 20:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/imperial-march-on-floppy-drives/</guid>
+      <description>Just for fun, try to play music with old floppy drives and an Arduino.</description>
+    </item>
+    
+    <item>
+      <title>Equilux a Arduino clock</title>
+      <link>https://kruyt.org/arduino-equilux-clock/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/arduino-equilux-clock/</guid>
+      <description>I created a Arduino controled led clock with 60 rgb led&amp;rsquo;s. This one is inspired by the Equinox Clock from Bram Knaapen.
+LED strip For the 60 RGB leds I use a string of RGB leds that I order directly from China, each of those leds has a LPD6803 IC. A arduino library for this string can be found at adafruit&amp;rsquo;s github.
+Time Keeping For time keeping I am using a a RTC DS1307 that is connected via I2C to pin A4 and A5 on the Arduino.</description>
+    </item>
+    
+    <item>
+      <title>Read Magnetic cards with an Arduino</title>
+      <link>https://kruyt.org/read-magnetic-cards-with-an-arduino/</link>
+      <pubDate>Sat, 03 Jul 2010 17:52:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/read-magnetic-cards-with-an-arduino/</guid>
+      <description>Found an old magnetic card reader. I hooked it up to an Arduino to read magnetic cards.
+  </description>
+    </item>
+    
+    <item>
+      <title>Inlinefeed a Wordpress plugin to display RSS feeds</title>
+      <link>https://kruyt.org/inlinefeed/</link>
+      <pubDate>Tue, 28 Apr 2009 14:35:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/inlinefeed/</guid>
+      <description>This is not working any more just for historical purpose.
+With the inlinefeed plugin you can display and embed RSS/ATOM feeds in your Wordpress posts and pages.
+You can use the following shortcode within Wordpress:
+[inlinefeed rss_feed_url=&amp;quot;http://feed.xml&amp;quot;]
+NOTE: From version 2.0 you can only use the shortcode [inlinefeed], the old style rss:[URL]; doesn’t work anymore! If you upgrade
+from a 1.xx version, then you must change from rss:[URL] to [inlinefeed rss_feed_url=”http://feed.</description>
+    </item>
+    
+    <item>
+      <title>Grease Monkey: Flickramio</title>
+      <link>https://kruyt.org/grease-monkey-flickramio/</link>
+      <pubDate>Fri, 24 Apr 2009 14:24:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/grease-monkey-flickramio/</guid>
+      <description>Flickramio is a Greasemonkey script that put 2 google earth map’s next to the photo if the image is geotagged, so Flickr looks a little more like Panoramio.</description>
+    </item>
+    
+  </channel>
+</rss>

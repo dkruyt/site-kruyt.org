@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>redhat on Dennis Kruyt</title>
+    <link>https://kruyt.org/categories/redhat/</link>
+    <description>Recent content in redhat on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Feb 2020 18:16:23 +0000</lastBuildDate><atom:link href="https://kruyt.org/categories/redhat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Passed the Red Hat RHCSA exam</title>
+      <link>https://kruyt.org/i-passed-the-rhcsa-exam/</link>
+      <pubDate>Thu, 06 Feb 2020 18:16:23 +0000</pubDate>
+      
+      <guid>https://kruyt.org/i-passed-the-rhcsa-exam/</guid>
+      <description>Today I passed the Red Hat RHCSA exam with the maximum 300/300 100% score! 😁
+I had a good feeling during the exam, and after about an hour I got the following email from Red Hat.
+The results of your recent EX200 Red Hat Certified System Administrator Exam are reported below. Passing score: 210 Your score: 300 Result: PASS Congratulations -- you have earned the Red Hat Certified System Administrator certification.</description>
+    </item>
+    
+  </channel>
+</rss>

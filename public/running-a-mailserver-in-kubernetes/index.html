@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Running a mailserver in Kubernetes | Dennis Kruyt</title>
+<meta name="keywords" content="kubernetes, ingress, proxy, postfix, mx, email, server, mail" />
+<meta name="description" content="Running a webserver in Kubernetes is easy, but a mailserver is more challenging. Most of the challenging things has todo with your ip infrastructure, ingress and loadbalancer within Kubernetes. Here are things I learned when I was deploying a mailserver based on Postfix on Kubernetes with metallb and nginx ingress. If you have a different setup, things could apply or not.
+Prevent mail loops on your secondary MX Your postfix MX pod is running maybe on a private ip RFC1918, this is fine.">
+<meta name="author" content="Dennis Kruyt">
+<link rel="canonical" href="https://kruyt.org/running-a-mailserver-in-kubernetes/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kruyt.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kruyt.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kruyt.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://kruyt.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://kruyt.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.89.4" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Running a mailserver in Kubernetes" />
+<meta property="og:description" content="Running a webserver in Kubernetes is easy, but a mailserver is more challenging. Most of the challenging things has todo with your ip infrastructure, ingress and loadbalancer within Kubernetes. Here are things I learned when I was deploying a mailserver based on Postfix on Kubernetes with metallb and nginx ingress. If you have a different setup, things could apply or not.
+Prevent mail loops on your secondary MX Your postfix MX pod is running maybe on a private ip RFC1918, this is fine." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kruyt.org/running-a-mailserver-in-kubernetes/" />
+<meta property="og:image" content="https://kruyt.org/images/2020/10/photo-1527295699943-41f460f6f4c7.jpeg" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-10-19T13:51:21&#43;00:00" />
+<meta property="article:modified_time" content="2020-10-19T13:51:21&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kruyt.org/images/2020/10/photo-1527295699943-41f460f6f4c7.jpeg" />
+<meta name="twitter:title" content="Running a mailserver in Kubernetes"/>
+<meta name="twitter:description" content="Running a webserver in Kubernetes is easy, but a mailserver is more challenging. Most of the challenging things has todo with your ip infrastructure, ingress and loadbalancer within Kubernetes. Here are things I learned when I was deploying a mailserver based on Postfix on Kubernetes with metallb and nginx ingress. If you have a different setup, things could apply or not.
+Prevent mail loops on your secondary MX Your postfix MX pod is running maybe on a private ip RFC1918, this is fine."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kruyt.org/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Running a mailserver in Kubernetes",
+      "item": "https://kruyt.org/running-a-mailserver-in-kubernetes/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Running a mailserver in Kubernetes",
+  "name": "Running a mailserver in Kubernetes",
+  "description": "Running a webserver in Kubernetes is easy, but a mailserver is more challenging. Most of the challenging things has todo with your ip infrastructure, ingress and loadbalancer within Kubernetes. Here are things I learned when I was deploying a mailserver based on Postfix on Kubernetes with metallb and nginx ingress. If you have a different setup, things could apply or not.\nPrevent mail loops on your secondary MX Your postfix MX pod is running maybe on a private ip RFC1918, this is fine.",
+  "keywords": [
+    "kubernetes", "ingress", "proxy", "postfix", "mx", "email", "server", "mail"
+  ],
+  "articleBody": "Running a webserver in Kubernetes is easy, but a mailserver is more challenging. Most of the challenging things has todo with your ip infrastructure, ingress and loadbalancer within Kubernetes. Here are things I learned when I was deploying a mailserver based on Postfix on Kubernetes with metallb and nginx ingress. If you have a different setup, things could apply or not.\nPrevent mail loops on your secondary MX Your postfix MX pod is running maybe on a private ip RFC1918, this is fine. But Postfix needs to know it’s public ip. This is to prevent mail looping if yor primary MX is down. You need to define your public incoming ip in the main.cf so if you use loadbalancing you need to define the public ip for the LoadBalancer that would be the same IP as defined in your DNS MX record, not your outgoing ip.\nproxy_interfaces = 178.242.244.145 Ingress Proxy and external IP If you want to run your mailserver behind for example a nginx or haproxy ingress proxy, because you don’t have enough public ip’s or want to use one ip for multiple services. Postfix wont know the Public IP of the incoming client connection. And that could be a problem for things like RBL lookups.\nTo let Postfix know what the external public ip is from the connecting client. We need to use the externalTrafficPolicy for the ingress service that is behind the LoadBalancer. If this is possible also depends on the type of LoadBalancer you use. I am using metallb and that is working.\nexternalTrafficPolicy: Local Now the ingress proxy knows the external ip of the connecting client. But this ingress proxy needs to pass this information down the the Postfix Pod. For this we can use in nginx of haproxy ingress the tcp-services configmap. This is brcuase ingress normaly does only http and not TCP.\napiVersion: v1 kind: ConfigMap metadata: name: tcp-services namespace: ingress-nginx data: \"25\": \"mail/mail-postfix:25::PROXY\" And in postfix we need to tell that connection from the ingress proxy is using the PROXY protocol. haproxy protocol definition here also works with nginx, haproxy is just a standard.\npostscreen_upstream_proxy_protocol=haproxy helo/ehlo Banners Your incoming and outgoing mails doesn’t need to be to or from same ip for the same pod, maybe ingress is via a LoadBalancer and ingress proxy, and outgoing will be from the node where the pod is running. So the A and PTR DNS records are different. Mail system can be strict for the correct usage with A and PTR records and whats is defined in the banners. So we need to define those in the main.cf from Postfix\nsmtpd_banner = {{ LOADBALANCER_INGRESS_NAME }} ESMTP $mail_name smtp_helo_name = {{ NODE_NAME }} You can hardcode the names, better is to put in in the environment variable from the pod. So now when the pod starts, it get the hostname of the node (needs to be a FQDN). And this varible you can apply in your mail config. And if your DNS records are correctly setup the helo for outgoing connections should contain the hostname of the node running the pod.\nenv: - name: NODE_NAME valueFrom: fieldRef: fieldPath: spec.nodeName RBL List For fighting spam maybe you use RBL lists. The problem is that DNS servers will be limited in the amount of requests that they can do. So when you use your provider DNS and other people will also use this DNS server you will hit a max pretty easy. Better is to use your own resolver for this.\nNote: If you are running a commercial server you should be paying or donating to use this lists in general.\nOne way is to install an Unbound resolver on your nodes (the nodes where CoreDNS is running) and point the config of CoreDNS in Kubernetes for the RBL lists to this Unbound resolver. Now the request for the RBL lists domains will go trough Unbound on the node.\napiVersion: v1 kind: ConfigMap metadata: name: coredns namespace: kube-system data: Corefile: |-.:53 { errors health { lameduck 5s } ready kubernetes cluster.local in-addr.arpa ip6.arpa { pods insecure fallthrough in-addr.arpa ip6.arpa ttl 30 } prometheus :9153 forward . /etc/resolv.conf cache 30 loop reload loadbalance } zen.spamhaus.org:53 { errors cache 30 forward . 172.17.0.1:5300 } multi.uribl.com:53 { errors cache 30 forward . 172.17.0.1:5300 } dnswl.org:53 { errors cache 30 forward . 172.17.0.1:5300 } ",
+  "wordCount" : "723",
+  "inLanguage": "en",
+  "image":"https://kruyt.org/images/2020/10/photo-1527295699943-41f460f6f4c7.jpeg","datePublished": "2020-10-19T13:51:21Z",
+  "dateModified": "2020-10-19T13:51:21Z",
+  "author":{
+    "@type": "Person",
+    "name": "Dennis Kruyt"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kruyt.org/running-a-mailserver-in-kubernetes/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dennis Kruyt",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kruyt.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kruyt.org/" accesskey="h" title="Dennis Kruyt (Alt + H)">Dennis Kruyt</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Running a mailserver in Kubernetes
+    </h1>
+    <div class="post-meta"><span title='2020-10-19 13:51:21 +0000 UTC'>October 19, 2020</span>&nbsp;·&nbsp;Dennis Kruyt
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://kruyt.org/images/2020/10/photo-1527295699943-41f460f6f4c7.jpeg" alt="">
+        
+</figure>
+  <div class="post-content"><p>Running a webserver in Kubernetes is easy, but a mailserver is more challenging. Most of the challenging things has todo with your ip infrastructure, ingress and loadbalancer within Kubernetes.  Here are things I learned when I was deploying a mailserver based on Postfix on Kubernetes with metallb and nginx ingress. If you have a different setup, things could apply or not.</p>
+<h3 id="prevent-mail-loops-on-your-secondary-mx">Prevent mail loops on your secondary MX<a hidden class="anchor" aria-hidden="true" href="#prevent-mail-loops-on-your-secondary-mx">#</a></h3>
+<p>Your postfix MX pod is running maybe on a private ip RFC1918, this is fine. But Postfix needs to know it&rsquo;s public ip. This is to prevent mail looping if yor primary MX is down.  You need to define your public incoming ip in the <code>main.cf</code> so if you use loadbalancing you need to define the public ip for the LoadBalancer that would be the same IP as defined in your DNS MX record, not your outgoing ip.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">proxy_interfaces = 178.242.244.145</span>
+</code></pre></div><h3 id="ingress-proxy-and-external-ip">Ingress Proxy and external IP<a hidden class="anchor" aria-hidden="true" href="#ingress-proxy-and-external-ip">#</a></h3>
+<p>If you want to run your mailserver behind for example a nginx or haproxy ingress proxy, because you don&rsquo;t have enough public ip&rsquo;s or want to use one ip for multiple services. Postfix wont know the Public IP of the incoming client connection. And that could be a problem for things like RBL lookups.</p>
+<p>To let Postfix know what the external public ip is from the connecting client. We need to use the <code>externalTrafficPolicy</code> for the ingress service that is behind the LoadBalancer. If this is possible also depends on the type of LoadBalancer you use. I am using metallb and that is working.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">externalTrafficPolicy</span>: <span style="color:#ae81ff">Local</span>
+</code></pre></div><p>Now the ingress proxy knows the external ip of the connecting client. But this ingress proxy needs to pass this information down the the Postfix Pod. For this we can use in nginx of haproxy ingress the tcp-services configmap. This is brcuase ingress normaly does only http and not TCP.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">tcp-services</span>
+  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">ingress-nginx</span>
+<span style="color:#f92672">data</span>:
+  <span style="color:#f92672">&#34;25&#34;: </span><span style="color:#e6db74">&#34;mail/mail-postfix:25::PROXY&#34;</span>
+</code></pre></div><p>And in postfix we need to tell that connection from the ingress proxy is using the PROXY protocol. <code>haproxy</code> protocol definition here also works with nginx, haproxy is just a standard.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">postscreen_upstream_proxy_protocol=haproxy</span>
+</code></pre></div><h3 id="heloehlo-banners">helo/ehlo Banners<a hidden class="anchor" aria-hidden="true" href="#heloehlo-banners">#</a></h3>
+<p>Your incoming and outgoing mails doesn&rsquo;t need to be to or from same ip for the same pod, maybe ingress is via a LoadBalancer and ingress proxy, and outgoing will be from the node where the pod is running. So the A and PTR DNS records are different. Mail system can be strict for the correct usage with A and PTR records and whats is defined in the banners. So we need to define those in the <code>main.cf</code> from Postfix</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">smtpd_banner = {{ LOADBALANCER_INGRESS_NAME }} ESMTP $mail_name</span>
+<span style="color:#ae81ff">smtp_helo_name = {{ NODE_NAME }}</span>
+</code></pre></div><p>You can hardcode the names, better is to put in in the environment variable from the pod. So now when the pod starts, it get the hostname of the node (needs to be a FQDN). And this varible you can apply in your mail config. And if your DNS records are correctly setup the helo for outgoing connections should contain the hostname of the node running the pod.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">        <span style="color:#f92672">env</span>:
+          - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">NODE_NAME</span>
+            <span style="color:#f92672">valueFrom</span>:
+              <span style="color:#f92672">fieldRef</span>:
+                <span style="color:#f92672">fieldPath</span>: <span style="color:#ae81ff">spec.nodeName</span>
+</code></pre></div><h3 id="rbl-list">RBL List<a hidden class="anchor" aria-hidden="true" href="#rbl-list">#</a></h3>
+<p>For fighting spam maybe you use RBL lists. The problem is that DNS servers will be limited in the amount of requests that they can do. So when you use your provider DNS and other people will also use this DNS server you will hit a max pretty easy. Better is to use your own resolver for this.</p>
+<p><strong>Note: If you are running a commercial server you should be paying or donating to use this lists in general</strong>.</p>
+<p>One way is to install an Unbound resolver on your nodes (the nodes where CoreDNS is running) and point the config of CoreDNS in Kubernetes for the RBL lists to this Unbound resolver. Now the request for the RBL lists domains will go trough Unbound on the node.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">coredns</span>
+  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">kube-system</span>
+<span style="color:#f92672">data</span>:
+  <span style="color:#f92672">Corefile</span>: |-<span style="color:#e6db74">
+</span><span style="color:#e6db74">    .:53 {
+</span><span style="color:#e6db74">        errors
+</span><span style="color:#e6db74">        health {
+</span><span style="color:#e6db74">            lameduck 5s
+</span><span style="color:#e6db74">        }
+</span><span style="color:#e6db74">        ready
+</span><span style="color:#e6db74">        kubernetes cluster.local in-addr.arpa ip6.arpa {
+</span><span style="color:#e6db74">            pods insecure
+</span><span style="color:#e6db74">            fallthrough in-addr.arpa ip6.arpa
+</span><span style="color:#e6db74">            ttl 30
+</span><span style="color:#e6db74">        }
+</span><span style="color:#e6db74">        prometheus :9153
+</span><span style="color:#e6db74">        forward . /etc/resolv.conf
+</span><span style="color:#e6db74">        cache 30
+</span><span style="color:#e6db74">        loop
+</span><span style="color:#e6db74">        reload
+</span><span style="color:#e6db74">        loadbalance
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">    zen.spamhaus.org:53 {
+</span><span style="color:#e6db74">       errors
+</span><span style="color:#e6db74">       cache 30
+</span><span style="color:#e6db74">       forward . 172.17.0.1:5300
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">    multi.uribl.com:53 {
+</span><span style="color:#e6db74">       errors
+</span><span style="color:#e6db74">       cache 30
+</span><span style="color:#e6db74">       forward . 172.17.0.1:5300
+</span><span style="color:#e6db74">    }
+</span><span style="color:#e6db74">    dnswl.org:53 {
+</span><span style="color:#e6db74">       errors
+</span><span style="color:#e6db74">       cache 30
+</span><span style="color:#e6db74">       forward . 172.17.0.1:5300
+</span><span style="color:#e6db74">    }</span>    
+</code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kruyt.org/tags/kubernetes/">kubernetes</a></li>
+      <li><a href="https://kruyt.org/tags/ingress/">ingress</a></li>
+      <li><a href="https://kruyt.org/tags/proxy/">proxy</a></li>
+      <li><a href="https://kruyt.org/tags/postfix/">postfix</a></li>
+      <li><a href="https://kruyt.org/tags/mx/">mx</a></li>
+      <li><a href="https://kruyt.org/tags/email/">email</a></li>
+      <li><a href="https://kruyt.org/tags/server/">server</a></li>
+      <li><a href="https://kruyt.org/tags/mail/">mail</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="https://kruyt.org/">Dennis Kruyt</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

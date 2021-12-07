@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>vyos on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/vyos/</link>
+    <description>Recent content in vyos on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Sep 2019 14:30:27 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/vyos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ZeroTier on a Ubiquiti EdgeRouter (part 2)</title>
+      <link>https://kruyt.org/zerotier-on-edgerouter-p2/</link>
+      <pubDate>Fri, 27 Sep 2019 14:30:27 +0000</pubDate>
+      
+      <guid>https://kruyt.org/zerotier-on-edgerouter-p2/</guid>
+      <description>In my previous post I showed how to install ZeroTier on the EdgeRouter, after installing we need to rename the ZeroTier interface to ethx interface to show up in EdgeOS.
+ZeroTier on a Ubiquiti EdgeRouter With the new EdgeOS version 2 firmware for the EdgeRouter it is now possible to install ZeroTier on this router. Dennis Kruyt Kruyt.org      Now I adopted EdgeOS (which is basically VyOS/Vyatta running on the EdgeRouter) to support ZeroTier from the native CLI with tab completion.</description>
+    </item>
+    
+    <item>
+      <title>ZeroTier on a Ubiquiti EdgeRouter</title>
+      <link>https://kruyt.org/zerotier-on-a-ubiquiti-edgerouter/</link>
+      <pubDate>Sat, 31 Aug 2019 17:36:31 +0000</pubDate>
+      
+      <guid>https://kruyt.org/zerotier-on-a-ubiquiti-edgerouter/</guid>
+      <description>With the new EdgeOS version 2 firmware for the EdgeRouter it is now possible to install ZeroTier on this router.</description>
+    </item>
+    
+  </channel>
+</rss>

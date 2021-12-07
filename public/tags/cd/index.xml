@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>cd on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/cd/</link>
+    <description>Recent content in cd on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Jan 2020 11:44:48 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/cd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ansible CICD pipeline with GitLab</title>
+      <link>https://kruyt.org/ansible-ci-with-gitlab/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/ansible-ci-with-gitlab/</guid>
+      <description>In this post I will show how I use GitLab CICD with Ansible. I&amp;rsquo;ll show the pipelines and how the merge requests are handled for full control and auditing.
+GitLab flow The GitLab flow is as following, you have one or more dev/working branches. To push code to the staging environment you do this via an merge request in GitLab, en to get this code in to production. Again via a merge request from the master branch to the production branch.</description>
+    </item>
+    
+  </channel>
+</rss>

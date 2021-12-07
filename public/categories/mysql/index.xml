@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>mysql on Dennis Kruyt</title>
+    <link>https://kruyt.org/categories/mysql/</link>
+    <description>Recent content in mysql on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Jul 2017 19:33:52 +0000</lastBuildDate><atom:link href="https://kruyt.org/categories/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Barnyard2: Data too long</title>
+      <link>https://kruyt.org/barnyard2_data_to_long/</link>
+      <pubDate>Mon, 24 Jul 2017 19:33:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/barnyard2_data_to_long/</guid>
+      <description>After I logged into Snorby to check some events on our IDS. I notice that one of my sensors didn&amp;rsquo;t return any events any more into the database.
+I log in the sensors and I notice that Barnyard2 wasn&amp;rsquo;t running any more. Barnyard2 parses the Snort logs and inserts the min the database. So I started the service again and after a few minutes it stoped running again.
+Upon inspection of the logs I fount this warning.</description>
+    </item>
+    
+  </channel>
+</rss>

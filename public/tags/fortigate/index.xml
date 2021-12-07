@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>fortigate on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/fortigate/</link>
+    <description>Recent content in fortigate on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Jun 2020 17:34:12 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/fortigate/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fortinet Fortigate in Grafana</title>
+      <link>https://kruyt.org/fortigate_grafana/</link>
+      <pubDate>Sun, 21 Jun 2020 17:34:12 +0000</pubDate>
+      
+      <guid>https://kruyt.org/fortigate_grafana/</guid>
+      <description>To get metrics from your FortiGate in Grafana using Telegraf and InfluxDB.
+ Enable SNMP on your FortiGate Put the following telegraf config in your /etc/telegraf/telegraf.d directory Edit the the agent IP and community string as appropriate  # # Retrieves SNMP values from remote agents [[inputs.snmp]] agents = [ &amp;quot;192.168.1.1:161&amp;quot; ] timeout = &amp;quot;10s&amp;quot; retries = 3 version = 2 community = &amp;quot;monitoring&amp;quot; # ## SNMPv3 auth parameters sec_name = &amp;quot;sec_name&amp;quot; auth_protocol = &amp;quot;SHA&amp;quot; # Values: &amp;quot;MD5&amp;quot;, &amp;quot;SHA&amp;quot;, &amp;quot;&amp;quot; auth_password = &amp;quot;auth_pass&amp;quot; sec_level = &amp;quot;authPriv&amp;quot; # Values: &amp;quot;noAuthNoPriv&amp;quot;, &amp;quot;authNoPriv&amp;quot;, &amp;quot;authPriv&amp;quot; # #context_name = &amp;quot;&amp;quot; priv_protocol = &amp;quot;AES&amp;quot; # Values: &amp;quot;DES&amp;quot;, &amp;quot;AES&amp;quot;, &amp;quot;&amp;quot; priv_password = &amp;quot;priv_pass&amp;quot; name = &amp;quot;FortiGate&amp;quot; [[inputs.</description>
+    </item>
+    
+  </channel>
+</rss>

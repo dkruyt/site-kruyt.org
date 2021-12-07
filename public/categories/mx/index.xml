@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>mx on Dennis Kruyt</title>
+    <link>https://kruyt.org/categories/mx/</link>
+    <description>Recent content in mx on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Oct 2020 13:51:21 +0000</lastBuildDate><atom:link href="https://kruyt.org/categories/mx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Running a mailserver in Kubernetes</title>
+      <link>https://kruyt.org/running-a-mailserver-in-kubernetes/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/running-a-mailserver-in-kubernetes/</guid>
+      <description>Running a webserver in Kubernetes is easy, but a mailserver is more challenging. Most of the challenging things has todo with your ip infrastructure, ingress and loadbalancer within Kubernetes. Here are things I learned when I was deploying a mailserver based on Postfix on Kubernetes with metallb and nginx ingress. If you have a different setup, things could apply or not.
+Prevent mail loops on your secondary MX Your postfix MX pod is running maybe on a private ip RFC1918, this is fine.</description>
+    </item>
+    
+  </channel>
+</rss>

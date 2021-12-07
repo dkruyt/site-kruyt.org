@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>ScaleWay vs Hetzner | Dennis Kruyt</title>
+<meta name="keywords" content="scaleway, hetzner, VPS, test, compare" />
+<meta name="description" content="I am looking for a new not so expensive VPS provider. When I was looking arround for something that would suit my needs I came up with ScaleWay and Hetzner as possible candidates.">
+<meta name="author" content="Dennis Kruyt">
+<link rel="canonical" href="https://kruyt.org/scaleway-vs-hetzner/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kruyt.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kruyt.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kruyt.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://kruyt.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://kruyt.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.89.4" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="ScaleWay vs Hetzner" />
+<meta property="og:description" content="I am looking for a new not so expensive VPS provider. When I was looking arround for something that would suit my needs I came up with ScaleWay and Hetzner as possible candidates." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kruyt.org/scaleway-vs-hetzner/" />
+<meta property="og:image" content="https://kruyt.org/images/2018/07/electrical-2476782_1920-1.jpg" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-07-19T18:59:35&#43;00:00" />
+<meta property="article:modified_time" content="2018-07-19T18:59:35&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kruyt.org/images/2018/07/electrical-2476782_1920-1.jpg" />
+<meta name="twitter:title" content="ScaleWay vs Hetzner"/>
+<meta name="twitter:description" content="I am looking for a new not so expensive VPS provider. When I was looking arround for something that would suit my needs I came up with ScaleWay and Hetzner as possible candidates."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kruyt.org/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "ScaleWay vs Hetzner",
+      "item": "https://kruyt.org/scaleway-vs-hetzner/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ScaleWay vs Hetzner",
+  "name": "ScaleWay vs Hetzner",
+  "description": "I am looking for a new not so expensive VPS provider. When I was looking arround for something that would suit my needs I came up with ScaleWay and Hetzner as possible candidates.",
+  "keywords": [
+    "scaleway", "hetzner", "VPS", "test", "compare"
+  ],
+  "articleBody": "I am looking for a new not so expensive VPS provider. When I was looking arround for something that would suit my needs I came up with ScaleWay and Hetzner as possible candidates. I need a VPS with 4GB of RAM, so the following offers would suit me and the price is what I want to pay.\n   Specs ScaleWay VC1M Hetzner CX21     CPU 4 2   Memory 3941 MB 3848 MB   Disk 50 GB 40 GB   Price €4.99 €5.93    We can see that on paper ScaleWay specs are better and for a lower price. Both claim on their site 4GB of memory, but ScaleWay has a little more if we look at the total memory available to the OS. But specs dont say everything.\nSo I want to test, you can pay by the hour, so no harm there. I deploy them both with their Ubuntu 18.04 LTS default install, installed latest patches and kernel 4.15.0-23-generic x86_64. So in this way they are the same on OS and Kernel. I noticed when deploying that Hetzner system was online is second, ScaleWay took a little longer, maybe a minute or so. That would be a plus for Hetzner. But I only deploy a system one time, so no real gain here for me.\n###CPU\nFirst I tested CPU and RAM with GeekBench. This shows that ScaleWay gives better performance on single thread and multi thread. Als I compiled fio, a tool I later wil use to test disk performance. This compiles faster on ScaleWay.\n   Test ScaleWay Hetzner     Geekbench Single 3073 2482   Geekbench Multi 7443 4652   Fio Compile 18.843s 21.443s    ###Disk To test Disk performance I used fio to test read and write performance. With random read/write it is a tie. With read ScaleWay wins and with Write Hetner.\n   Test ScaleWay Hetzner     Random read/write 59223/19711 59457/19782   Random read 129198 83405   Random write 37007 75129    Fio parameters used for this test\n#Random Read Write ./fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75 #Random Write ./fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randread #Random Read ./fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randwrite ###Conclusion\nAfter this test I decided to give ScaleWay a try, will migrating some services to them soon.\nupdate 8 Sept 2018, running now on ScaleWay for about 6 weeks, found no problems and everything is performing well.\n",
+  "wordCount" : "396",
+  "inLanguage": "en",
+  "image":"https://kruyt.org/images/2018/07/electrical-2476782_1920-1.jpg","datePublished": "2018-07-19T18:59:35Z",
+  "dateModified": "2018-07-19T18:59:35Z",
+  "author":{
+    "@type": "Person",
+    "name": "Dennis Kruyt"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kruyt.org/scaleway-vs-hetzner/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dennis Kruyt",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kruyt.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kruyt.org/" accesskey="h" title="Dennis Kruyt (Alt + H)">Dennis Kruyt</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      ScaleWay vs Hetzner
+    </h1>
+    <div class="post-meta"><span title='2018-07-19 18:59:35 +0000 UTC'>July 19, 2018</span>&nbsp;·&nbsp;Dennis Kruyt
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://kruyt.org/images/2018/07/electrical-2476782_1920-1.jpg" alt="">
+        
+</figure>
+  <div class="post-content"><p>I am looking for a new not so expensive VPS provider. When I was looking arround for something that would suit my needs I came up with ScaleWay and Hetzner as possible candidates.
+<img loading="lazy" src="/images/2018/07/scalewayvshetzner.png" alt="scalewayvshetzner"  />
+
+I need a VPS with 4GB of RAM, so the following offers would suit me and the price is what I want to pay.</p>
+<table>
+<thead>
+<tr>
+<th>Specs</th>
+<th>ScaleWay VC1M</th>
+<th>Hetzner CX21</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td><strong>4</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td><strong>3941 MB</strong></td>
+<td>3848 MB</td>
+</tr>
+<tr>
+<td>Disk</td>
+<td><strong>50 GB</strong></td>
+<td>40 GB</td>
+</tr>
+<tr>
+<td>Price</td>
+<td><strong>€4.99</strong></td>
+<td>€5.93</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that on paper ScaleWay specs are better and for a lower price. Both claim on their site 4GB of memory, but ScaleWay has a little more if we look at the total memory available to the OS. But specs dont say everything.</p>
+<p>So I want to test, you can pay by the hour, so no harm there. I deploy them both with their Ubuntu 18.04 LTS default install, installed latest patches and kernel 4.15.0-23-generic x86_64. So in this way they are the same on OS and Kernel. I noticed when deploying that Hetzner system was online is second, ScaleWay took a little longer, maybe a minute or so. That would be a plus for Hetzner. But I only deploy a system one time, so no real gain here for me.</p>
+<p>###CPU</p>
+<p>First I tested CPU and RAM with <a href="https://www.geekbench.com/">GeekBench</a>. This shows that ScaleWay gives better performance on single thread and multi thread. Als I compiled fio, a tool I later wil use to test disk performance. This compiles faster on ScaleWay.</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>ScaleWay</th>
+<th>Hetzner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Geekbench Single</td>
+<td><strong><a href="https://browser.geekbench.com/v4/cpu/9072940">3073</a></strong></td>
+<td><a href="https://browser.geekbench.com/v4/cpu/9072938">2482</a></td>
+</tr>
+<tr>
+<td>Geekbench Multi</td>
+<td><strong><a href="https://browser.geekbench.com/v4/cpu/9072940">7443</a></strong></td>
+<td><a href="https://browser.geekbench.com/v4/cpu/9072938">4652</a></td>
+</tr>
+<tr>
+<td>Fio Compile</td>
+<td><strong>18.843s</strong></td>
+<td>21.443s</td>
+</tr>
+</tbody>
+</table>
+<p>###Disk
+To test Disk performance I used <a href="https://github.com/axboe/fio">fio</a> to test read and write performance. With random read/write it is a tie. With read ScaleWay wins and with Write Hetner.</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>ScaleWay</th>
+<th>Hetzner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Random read/write</td>
+<td>59223/19711</td>
+<td>59457/19782</td>
+</tr>
+<tr>
+<td>Random read</td>
+<td><strong>129198</strong></td>
+<td>83405</td>
+</tr>
+<tr>
+<td>Random write</td>
+<td>37007</td>
+<td><strong>75129</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Fio parameters used for this test</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#Random Read Write</span>
+./fio --randrepeat<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --ioengine<span style="color:#f92672">=</span>libaio --direct<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --gtod_reduce<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --name<span style="color:#f92672">=</span>test --filename<span style="color:#f92672">=</span>test --bs<span style="color:#f92672">=</span>4k --iodepth<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> --size<span style="color:#f92672">=</span>4G --readwrite<span style="color:#f92672">=</span>randrw --rwmixread<span style="color:#f92672">=</span><span style="color:#ae81ff">75</span>
+
+<span style="color:#75715e">#Random Write</span>
+./fio --randrepeat<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --ioengine<span style="color:#f92672">=</span>libaio --direct<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --gtod_reduce<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --name<span style="color:#f92672">=</span>test --filename<span style="color:#f92672">=</span>test --bs<span style="color:#f92672">=</span>4k --iodepth<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> --size<span style="color:#f92672">=</span>4G --readwrite<span style="color:#f92672">=</span>randread
+
+<span style="color:#75715e">#Random Read</span>
+./fio --randrepeat<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --ioengine<span style="color:#f92672">=</span>libaio --direct<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --gtod_reduce<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> --name<span style="color:#f92672">=</span>test --filename<span style="color:#f92672">=</span>test --bs<span style="color:#f92672">=</span>4k --iodepth<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span> --size<span style="color:#f92672">=</span>4G --readwrite<span style="color:#f92672">=</span>randwrite
+</code></pre></div><p>###Conclusion</p>
+<p>After this test I decided to give ScaleWay a try, will migrating some services to them soon.</p>
+<p><em><strong>update 8 Sept 2018</strong>, running now on ScaleWay for about 6 weeks, found no problems and everything is performing well.</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kruyt.org/tags/scaleway/">scaleway</a></li>
+      <li><a href="https://kruyt.org/tags/hetzner/">hetzner</a></li>
+      <li><a href="https://kruyt.org/tags/VPS/">VPS</a></li>
+      <li><a href="https://kruyt.org/tags/test/">test</a></li>
+      <li><a href="https://kruyt.org/tags/compare/">compare</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="https://kruyt.org/">Dennis Kruyt</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

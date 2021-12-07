@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>SUSE SLES 15 Container in LXD | Dennis Kruyt</title>
+<meta name="keywords" content="Suse, lxd, container, SLES" />
+<meta name="description" content="I am a big fan of LXD and lot of my &lsquo;home infra&rsquo; and VPS&rsquo;s are all running LXD container. Also I am using LXD at work to create test setup for al sorts of Linux OS&rsquo;s and applications. Most &ldquo;free&rdquo; Linux OS&rsquo;s are already in the LXD image repository. But sometime&rsquo;s I need a non free Linux OS. Such as SUSE Linux Enterprise Server, or SLES for short. Off-course I can run this in a VPS just by installing it from an ISO.">
+<meta name="author" content="Dennis Kruyt">
+<link rel="canonical" href="https://kruyt.org/suse-sles-15-container-in-lxd/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kruyt.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kruyt.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kruyt.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://kruyt.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://kruyt.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.89.4" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="SUSE SLES 15 Container in LXD" />
+<meta property="og:description" content="I am a big fan of LXD and lot of my &lsquo;home infra&rsquo; and VPS&rsquo;s are all running LXD container. Also I am using LXD at work to create test setup for al sorts of Linux OS&rsquo;s and applications. Most &ldquo;free&rdquo; Linux OS&rsquo;s are already in the LXD image repository. But sometime&rsquo;s I need a non free Linux OS. Such as SUSE Linux Enterprise Server, or SLES for short. Off-course I can run this in a VPS just by installing it from an ISO." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kruyt.org/suse-sles-15-container-in-lxd/" />
+<meta property="og:image" content="https://kruyt.org/images/2020/01/logo3.resized.jpg" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-01-20T19:48:06&#43;00:00" />
+<meta property="article:modified_time" content="2020-01-20T19:48:06&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kruyt.org/images/2020/01/logo3.resized.jpg" />
+<meta name="twitter:title" content="SUSE SLES 15 Container in LXD"/>
+<meta name="twitter:description" content="I am a big fan of LXD and lot of my &lsquo;home infra&rsquo; and VPS&rsquo;s are all running LXD container. Also I am using LXD at work to create test setup for al sorts of Linux OS&rsquo;s and applications. Most &ldquo;free&rdquo; Linux OS&rsquo;s are already in the LXD image repository. But sometime&rsquo;s I need a non free Linux OS. Such as SUSE Linux Enterprise Server, or SLES for short. Off-course I can run this in a VPS just by installing it from an ISO."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kruyt.org/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "SUSE SLES 15 Container in LXD",
+      "item": "https://kruyt.org/suse-sles-15-container-in-lxd/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SUSE SLES 15 Container in LXD",
+  "name": "SUSE SLES 15 Container in LXD",
+  "description": "I am a big fan of LXD and lot of my \u0026lsquo;home infra\u0026rsquo; and VPS\u0026rsquo;s are all running LXD container. Also I am using LXD at work to create test setup for al sorts of Linux OS\u0026rsquo;s and applications. Most \u0026ldquo;free\u0026rdquo; Linux OS\u0026rsquo;s are already in the LXD image repository. But sometime\u0026rsquo;s I need a non free Linux OS. Such as SUSE Linux Enterprise Server, or SLES for short. Off-course I can run this in a VPS just by installing it from an ISO.",
+  "keywords": [
+    "Suse", "lxd", "container", "SLES"
+  ],
+  "articleBody": "I am a big fan of LXD and lot of my ‘home infra’ and VPS’s are all running LXD container. Also I am using LXD at work to create test setup for al sorts of Linux OS’s and applications. Most “free” Linux OS’s are already in the LXD image repository. But sometime’s I need a non free Linux OS. Such as SUSE Linux Enterprise Server, or SLES for short. Off-course I can run this in a VPS just by installing it from an ISO. But this takes too long and uses too much resources.\nSo I wanted to have SLES also available as a local container for test purposes that I can spin up in seconds.\nCreate SLES chroot To create an LXD image we need first todo a SLES install in a chroot on a SLES install. In my case I installed SLES in a VPS. Here I create a chroot dir for the install, and with zypper I install a set of minimal packages into this chroot.\nmkdir /mnt/chroot zypper --installroot /mnt/chroot in aaa_base bash systemd-sysvinit sysvinit-tools iproute2 sysconfig-netconfig netcfg wget zypper vim After the zypper install we need to copy some files to the chroot. We need the network interface config file. So networking will startup in the LXD container. And we copy the zypper repo from the VPS install to the chroot environment.\ncp /etc/sysconfig/network/ifcfg-eth0 /mnt/chroot/etc/sysconfig/network/ cp -r /etc/zypp/repos.d/ /mnt/chroot/etc/zypp/ Now the basic chroot environment is finished and we can create a tarball of the chroot.\n tar -cvzf /tmp/suse15sp1.tgz -C /mnt/chroot . Then we copy the tarball to the system that will run the LXD containers.\nImport LXD image On our LXD host we need to create a metadata.yaml file. This file describes things like image creation date, name, architecture and description.\narchitecture: \"x86_64\" creation_date: 1579536701 # To get current date in Unix time, use `date +%s` command properties: architecture: \"x86_64\" description: \"SUSE 15 SP1\" os: \"SUSE\" release: \"15SP1\" After creating the file we need create a tarball of this.\n tar -cvzf metadata.tar.gz metadata.yaml After creating them, let’s import our two tarballs, the metadata en the SLES chroot we copied earlier to this system as a LXD image.\n lxc image import metadata.tar.gz suse15sp1.tgz --alias suse-15sp1 We can check if the image is in our image catalog.\ndennis@thinkpad:~ lxc image list suse-15sp1 +------------+--------------+--------+-------------+--------+-----------+----------+------------------------------+ | ALIAS | FINGERPRINT | PUBLIC | DESCRIPTION | ARCH | TYPE | SIZE | UPLOAD DATE | +------------+--------------+--------+-------------+--------+-----------+----------+------------------------------+ | suse-15sp1 | fe5f49751f18 | no | | x86_64 | CONTAINER | 129.21MB | Jan 20, 2020 at 7:52pm (UTC) | +------------+--------------+--------+-------------+--------+-----------+----------+------------------------------+ It’s only a 129mb, pretty small ;)\nTest LXD SLES container And lets test the SLES LXD container by launching it and execute bash in it.\ndennis@thinkpad:~ lxc launch suse-15sp1 suse-test Creating suse-test Starting suse-test dennis@thinkpad:~ lxc exec suse-test bash suse-test:~ # cat /etc/os-release NAME=\"SLES\" VERSION=\"15-SP1\" VERSION_ID=\"15.1\" PRETTY_NAME=\"SUSE Linux Enterprise Server 15 SP1\" ID=\"sles\" ID_LIKE=\"suse\" ANSI_COLOR=\"0;32\" CPE_NAME=\"cpe:/o:suse:sles:15:sp1\" suse-test:~ # uname -a Linux suse-test 5.3.0-26-generic #28-Ubuntu SMP Wed Dec 18 05:37:46 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux suse-test:~ # Now you can install with zypper other applications. Also it is possible to register with SUSEConnect the container or use it with a RMT server.\n",
+  "wordCount" : "530",
+  "inLanguage": "en",
+  "image":"https://kruyt.org/images/2020/01/logo3.resized.jpg","datePublished": "2020-01-20T19:48:06Z",
+  "dateModified": "2020-01-20T19:48:06Z",
+  "author":{
+    "@type": "Person",
+    "name": "Dennis Kruyt"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kruyt.org/suse-sles-15-container-in-lxd/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dennis Kruyt",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kruyt.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kruyt.org/" accesskey="h" title="Dennis Kruyt (Alt + H)">Dennis Kruyt</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      SUSE SLES 15 Container in LXD
+    </h1>
+    <div class="post-meta"><span title='2020-01-20 19:48:06 +0000 UTC'>January 20, 2020</span>&nbsp;·&nbsp;Dennis Kruyt
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://kruyt.org/images/2020/01/logo3.resized.jpg" alt="">
+        
+</figure>
+  <div class="post-content"><p>I am a big fan of LXD and lot of my &lsquo;home infra&rsquo; and VPS&rsquo;s are all running LXD container. Also I am using LXD at work to create test setup for al sorts of Linux OS&rsquo;s and applications. Most &ldquo;free&rdquo; Linux OS&rsquo;s are already in the LXD image repository. But sometime&rsquo;s I need a non free Linux OS. Such as SUSE Linux Enterprise Server, or SLES for short. Off-course I can run this in a VPS just by installing it from an ISO. But this takes too long and uses too much resources.</p>
+<p>So I wanted to have SLES also available as a local container for test purposes that I can spin up in seconds.</p>
+<h2 id="create-sles-chroot">Create SLES chroot<a hidden class="anchor" aria-hidden="true" href="#create-sles-chroot">#</a></h2>
+<p>To create an LXD image we need first todo a SLES install in a chroot on a SLES install. In my case I installed SLES in a VPS. Here I create a chroot dir for the install, and with zypper I install a set of minimal packages into this chroot.</p>
+<pre tabindex="0"><code>mkdir /mnt/chroot
+
+zypper --installroot /mnt/chroot in aaa_base bash systemd-sysvinit sysvinit-tools iproute2 sysconfig-netconfig netcfg wget zypper vim
+</code></pre><p>After the zypper install we need to copy some files to the chroot. We need the network interface config file. So networking will startup in the LXD container. And we copy the zypper repo from the VPS install to the chroot environment.</p>
+<pre tabindex="0"><code>cp /etc/sysconfig/network/ifcfg-eth0 /mnt/chroot/etc/sysconfig/network/
+
+cp -r /etc/zypp/repos.d/ /mnt/chroot/etc/zypp/
+</code></pre><p>Now the basic chroot environment is finished and we can create a tarball of the chroot.</p>
+<pre tabindex="0"><code> tar -cvzf /tmp/suse15sp1.tgz -C /mnt/chroot .
+</code></pre><p>Then we copy the tarball to the system that will run the LXD containers.</p>
+<h2 id="import-lxd-image">Import LXD image<a hidden class="anchor" aria-hidden="true" href="#import-lxd-image">#</a></h2>
+<p>On our LXD host we need to create a metadata.yaml file. This file describes things like image creation date, name, architecture and description.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">architecture</span>: <span style="color:#e6db74">&#34;x86_64&#34;</span>
+<span style="color:#f92672">creation_date</span>: <span style="color:#ae81ff">1579536701</span> <span style="color:#75715e"># To get current date in Unix time, use `date +%s` command</span>
+<span style="color:#f92672">properties</span>:
+<span style="color:#f92672">architecture</span>: <span style="color:#e6db74">&#34;x86_64&#34;</span>
+<span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;SUSE 15 SP1&#34;</span>
+<span style="color:#f92672">os</span>: <span style="color:#e6db74">&#34;SUSE&#34;</span>
+<span style="color:#f92672">release</span>: <span style="color:#e6db74">&#34;15SP1&#34;</span>
+</code></pre></div><p>After creating the file we need create a tarball of this.</p>
+<pre tabindex="0"><code> tar -cvzf metadata.tar.gz metadata.yaml
+</code></pre><p>After creating them, let&rsquo;s import our two tarballs, the metadata en the SLES chroot we copied earlier to this system as a LXD image.</p>
+<pre tabindex="0"><code> lxc image import metadata.tar.gz suse15sp1.tgz --alias suse-15sp1
+</code></pre><p>We can check if the image is in our image catalog.</p>
+<pre tabindex="0"><code>dennis@thinkpad:~&gt; lxc image list suse-15sp1
++------------+--------------+--------+-------------+--------+-----------+----------+------------------------------+
+|   ALIAS    | FINGERPRINT  | PUBLIC | DESCRIPTION |  ARCH  |   TYPE    |   SIZE   |         UPLOAD DATE          |
++------------+--------------+--------+-------------+--------+-----------+----------+------------------------------+
+| suse-15sp1 | fe5f49751f18 | no     |             | x86_64 | CONTAINER | 129.21MB | Jan 20, 2020 at 7:52pm (UTC) |
++------------+--------------+--------+-------------+--------+-----------+----------+------------------------------+
+
+</code></pre><p>It&rsquo;s only a 129mb, pretty small ;)</p>
+<h3 id="test-lxd-sles-container">Test LXD SLES container<a hidden class="anchor" aria-hidden="true" href="#test-lxd-sles-container">#</a></h3>
+<p>And lets test the SLES LXD container by launching it and execute bash in it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dennis@thinkpad:~&gt; lxc launch suse-15sp1 suse-test
+Creating suse-test
+Starting suse-test                        
+dennis@thinkpad:~&gt; lxc exec suse-test bash
+suse-test:~ <span style="color:#75715e"># cat /etc/os-release</span>
+NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SLES&#34;</span>
+VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;15-SP1&#34;</span>
+VERSION_ID<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;15.1&#34;</span>
+PRETTY_NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SUSE Linux Enterprise Server 15 SP1&#34;</span>
+ID<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sles&#34;</span>
+ID_LIKE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;suse&#34;</span>
+ANSI_COLOR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0;32&#34;</span>
+CPE_NAME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cpe:/o:suse:sles:15:sp1&#34;</span>
+suse-test:~ <span style="color:#75715e"># uname -a</span>
+Linux suse-test 5.3.0-26-generic <span style="color:#75715e">#28-Ubuntu SMP Wed Dec 18 05:37:46 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span>
+suse-test:~ <span style="color:#75715e">#</span>
+</code></pre></div><p>Now you can install with zypper other applications. Also it is possible to register with SUSEConnect the container or use it with a RMT server.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kruyt.org/tags/Suse/">Suse</a></li>
+      <li><a href="https://kruyt.org/tags/lxd/">lxd</a></li>
+      <li><a href="https://kruyt.org/tags/container/">container</a></li>
+      <li><a href="https://kruyt.org/tags/SLES/">SLES</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="https://kruyt.org/">Dennis Kruyt</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

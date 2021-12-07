@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>lizardfs on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/lizardfs/</link>
+    <description>Recent content in lizardfs on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Aug 2017 19:59:32 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/lizardfs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LizardFS in Grafana</title>
+      <link>https://kruyt.org/lizardfs-in-grafana/</link>
+      <pubDate>Mon, 14 Aug 2017 19:59:32 +0000</pubDate>
+      
+      <guid>https://kruyt.org/lizardfs-in-grafana/</guid>
+      <description>This plugin/script for Telegraf will collect the metrics from LizardFS and stores it into InfluxDB, then you can view your metrics in Grafana on a templated dashboard.</description>
+    </item>
+    
+  </channel>
+</rss>

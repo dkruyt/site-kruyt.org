@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>containerd on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/containerd/</link>
+    <description>Recent content in containerd on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Mar 2021 21:17:54 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/containerd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrate from Docker to Containerd in Kubernetes</title>
+      <link>https://kruyt.org/migrate-docker-containerd-kubernetes/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/migrate-docker-containerd-kubernetes/</guid>
+      <description>Kubernetes is deprecating Docker as a container runtime after v1.20. Don&amp;rsquo;t Panic 😱 Docker containers are still supported, but the dockershim/Docker, the layer between Kubernetes and containerd is deprecated and will be removed from version 1.22+.
+Don’t Panic: Kubernetes and Docker Authors: Jorge Castro, Duffie Cooley, Kat Cosgrove, Justin Garrison, Noah Kantrowitz, Bob Killen, Rey Lejano, Dan “POP” Papandrea, Jeffrey Sica, Davanum “Dims” Srinivas\nKubernetes is deprecating Docker as a container runtime after v1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Equilux a Arduino clock | Dennis Kruyt</title>
+<meta name="keywords" content="arduino, clock, ds1307, Equilux, hack42, led, rgb, shield" />
+<meta name="description" content="I created a Arduino controled led clock with 60 rgb led&rsquo;s. This one is inspired by the Equinox Clock from Bram Knaapen.
+LED strip For the 60 RGB leds I use a string of RGB leds that I order directly from China, each of those leds has a LPD6803 IC. A arduino library for this string can be found at adafruit&rsquo;s github.
+Time Keeping For time keeping I am using a a RTC DS1307 that is connected via I2C to pin A4 and A5 on the Arduino.">
+<meta name="author" content="Dennis Kruyt">
+<link rel="canonical" href="https://kruyt.org/post/2011/arduino-equilux-clock/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kruyt.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kruyt.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kruyt.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://kruyt.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://kruyt.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.89.4" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Equilux a Arduino clock" />
+<meta property="og:description" content="I created a Arduino controled led clock with 60 rgb led&rsquo;s. This one is inspired by the Equinox Clock from Bram Knaapen.
+LED strip For the 60 RGB leds I use a string of RGB leds that I order directly from China, each of those leds has a LPD6803 IC. A arduino library for this string can be found at adafruit&rsquo;s github.
+Time Keeping For time keeping I am using a a RTC DS1307 that is connected via I2C to pin A4 and A5 on the Arduino." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kruyt.org/post/2011/arduino-equilux-clock/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2011-06-17T21:03:46&#43;00:00" />
+<meta property="article:modified_time" content="2011-06-17T21:03:46&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Equilux a Arduino clock"/>
+<meta name="twitter:description" content="I created a Arduino controled led clock with 60 rgb led&rsquo;s. This one is inspired by the Equinox Clock from Bram Knaapen.
+LED strip For the 60 RGB leds I use a string of RGB leds that I order directly from China, each of those leds has a LPD6803 IC. A arduino library for this string can be found at adafruit&rsquo;s github.
+Time Keeping For time keeping I am using a a RTC DS1307 that is connected via I2C to pin A4 and A5 on the Arduino."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kruyt.org/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Equilux a Arduino clock",
+      "item": "https://kruyt.org/post/2011/arduino-equilux-clock/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Equilux a Arduino clock",
+  "name": "Equilux a Arduino clock",
+  "description": "I created a Arduino controled led clock with 60 rgb led\u0026rsquo;s. This one is inspired by the Equinox Clock from Bram Knaapen.\nLED strip For the 60 RGB leds I use a string of RGB leds that I order directly from China, each of those leds has a LPD6803 IC. A arduino library for this string can be found at adafruit\u0026rsquo;s github.\nTime Keeping For time keeping I am using a a RTC DS1307 that is connected via I2C to pin A4 and A5 on the Arduino.",
+  "keywords": [
+    "arduino", "clock", "ds1307", "Equilux", "hack42", "led", "rgb", "shield"
+  ],
+  "articleBody": "I created a Arduino controled led clock with 60 rgb led’s. This one is inspired by the Equinox Clock from Bram Knaapen.\nLED strip For the 60 RGB leds I use a string of RGB leds that I order directly from China, each of those leds has a LPD6803 IC. A arduino library for this string can be found at adafruit’s github.\nTime Keeping For time keeping I am using a a RTC DS1307 that is connected via I2C to pin A4 and A5 on the Arduino. Pin 7 from the DS1307 is connected to pin D2 on the Arduino an is set to a 1Hz Square Wave. I am using this to give the Arduino every second a interrupt, this made the timing a lot easier. I build the DS1307 on a custom should with breakout pins.\nDimming There is also a LDR connected at pin A2, this wil measure the light and dim the led’s accordingly.\nArduino Shield Design For the design of the casing I am going for a 12 angle shape. The edge will be layered with sanded plexiglas sheets for a nice glow effect. The LED’s will in a aluminum bracket. Here is the first design what I made in google sketchup.\nPower The led string if all rgb leds are on will draw about 3.6 Amps at 5 volts. This of course is way to much for the Arduino regulator. But most of the time not all led’s will be on or at full brightness. Now I am using a switched 5.1 volt / 2 Amp power-supply that I had lying around. This power supply is directly connected to the + 5v on the arduino. So it’s bypassing the regulator on the Arduino.\nVideo Here is a short video overview from the first proto type, this on is fitted in a carton box, so nothing fancy yet. Now I need to get my hands on a laser cutter to build the casing.\n Code All the files, codes and sources of this project you can find on my github.\n// // Equilux, a RGB Led Clock by Dennis Kruyt (dennis@kruyt.org) 2011 // Inspired by the Equinox Clock from Bram Knaapen. // /*****************************************************************************/ // LPD6803 lib from ladyada #include \"LPD6803.h\" // LPD6802 pins int dataPin = 4; // 'green' wire int clockPin = 5; // 'blue' wire // Don't forget to connect 'yellow' to ground and 'red' to +5V // LDR pin int LDRPin = A2; // Timer 1 is also used by the strip to send pixel clocks #include  // Set the first variable to the NUMBER of pixels. 60 = 60 pixels in a row LPD6803 strip = LPD6803(60, dataPin, clockPin); //wire and rtc #include  #include \"RTClib.h\" // RTC_Millis is for a soft rtc //RTC_Millis RTC; RTC_DS1307 RTC; // Define second, minute, hour int s; int m; int h; // Brightness fade up (1 or 2) depens on LDR reading int z; // Set brightness min/max 31 int MinBright = 6; int MaxBright = 31; int brightness; // LDR int LDRValue; // Pin 13 is used for a sec blink led int led = 13; volatile int state = LOW; void setup() { Serial.begin(19200); //start wire and rtc Wire.begin(); RTC.begin(); if (! RTC.isrunning()) { Serial.println(\"RTC is NOT running!\"); // following line sets the RTC to the date \u0026 time this sketch was compiled RTC.adjust(DateTime(__DATE__, __TIME__)); } // set 1hz sqw on DS1307 pin 7, we will using this for a interrupt on arduino pin 2 Wire.beginTransmission(0x68); // write the control register Wire.send(0x07); // register address 07H) Wire.send(0x90); // 0x90=1Hz, 0x91=4kHz, 0x92=8kHz, 0x93=32kHz Wire.endTransmission(); // The Arduino needs to clock out the data to the pixels // this happens in interrupt timer 1, we can change how often // to call the interrupt. setting CPUmax to 100 will take nearly all all the // time to do the pixel updates and a nicer/faster display, // especially with strands of over 100 dots. // (Note that the max is 'pessimistic', its probably 10% or 20% less in reality) strip.setCPUmax(95); // up this if the strand flickers or is slow // Start up the LED counter strip.begin(); // Update the strip, to start they are all 'off' strip.show(); //Attach pin 7 from DS1307 to Arduino pin 2 and call function clock attachInterrupt(0, clock, FALLING); // Set pin 13 (led) to output mode pinMode(led, OUTPUT); } // Empty loop, all is done by the 1hz interupt on pin 2 void loop () { } void clock() { //attach Interrupt stops the strip, so start it again strip.begin(); //blink led on pin 13 digitalWrite(led, state); state = !state; //Get current time DateTime now = RTC.now(); // mapping hour 24 = 12 = 60 h = now.hour(), DEC; if (h  12) { h = h - 12; } //else if (h = 12) { h == 0; } h = map(h, 0, 12, 0, 60); if ( m 0 if (s == 0) { strip.setPixelColor((58), 0, 0, 0); } if (s == 1) { strip.setPixelColor((59), 0, 0, 0); } if (m == 0) { strip.setPixelColor((59), 0, 0, 0); } //start fade up/down for (int y = 1; y ",
+  "wordCount" : "1173",
+  "inLanguage": "en",
+  "datePublished": "2011-06-17T21:03:46Z",
+  "dateModified": "2011-06-17T21:03:46Z",
+  "author":{
+    "@type": "Person",
+    "name": "Dennis Kruyt"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kruyt.org/post/2011/arduino-equilux-clock/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dennis Kruyt",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kruyt.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kruyt.org/" accesskey="h" title="Dennis Kruyt (Alt + H)">Dennis Kruyt</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Equilux a Arduino clock
+    </h1>
+    <div class="post-meta"><span title='2011-06-17 21:03:46 +0000 UTC'>June 17, 2011</span>&nbsp;·&nbsp;Dennis Kruyt
+
+</div>
+  </header> 
+  <div class="post-content"><p>I created a Arduino controled led clock with 60 rgb led&rsquo;s. This one is inspired by the <a href="http://www.bramknaapen.com/?p=549" target="_blank">Equinox Clock</a> from Bram Knaapen.</p>
+<h5 id="led-strip">LED strip<a hidden class="anchor" aria-hidden="true" href="#led-strip">#</a></h5>
+<p>For the 60 RGB leds I use a string of RGB leds that I order directly from China, each of those <a href="http://blog.kruyt.org/wp-uploads/2011/05/314086573.jpg">leds</a> has a <a href="http://www.adafruit.com/datasheets/LPD6803.pdf" target="_blank">LPD6803</a> IC. A arduino library for this string can be found at <a href="https://github.com/adafruit/LPD6803-RGB-Pixels" target="_blank">adafruit&rsquo;s github</a>.</p>
+<h5 id="time-keeping">Time Keeping<a hidden class="anchor" aria-hidden="true" href="#time-keeping">#</a></h5>
+<p>For time keeping I am using a a RTC DS1307 that is connected via I2C to pin A4 and A5 on the Arduino. Pin 7 from the DS1307 is connected to pin D2 on the Arduino an is set to a 1Hz Square Wave. I am using this to give the Arduino every second a interrupt, this made the timing a lot easier. I build the DS1307 on a custom should with breakout pins.</p>
+<h5 id="dimming">Dimming<a hidden class="anchor" aria-hidden="true" href="#dimming">#</a></h5>
+<p>There is also a LDR connected at pin A2, this wil measure the light and dim the led&rsquo;s accordingly.</p>
+<h5 id="arduino-shield">Arduino Shield<a hidden class="anchor" aria-hidden="true" href="#arduino-shield">#</a></h5>
+<p><img loading="lazy" src="/images/2017/07/schema.png" alt=""  />
+</p>
+<p><img loading="lazy" src="/images/2017/07/ds1307-shield-s.jpg" alt=""  />
+</p>
+<h5 id="design">Design<a hidden class="anchor" aria-hidden="true" href="#design">#</a></h5>
+<p>For the design of the casing I am going for a 12 angle shape. The edge will be layered with sanded plexiglas sheets for a nice glow effect. The LED&rsquo;s will in a aluminum bracket. Here is the first design what I made in google sketchup.</p>
+<p><img loading="lazy" src="/images/2017/08/equilux-full.png" alt=""  />
+
+<img loading="lazy" src="/images/2017/08/equilux-side1.png" alt=""  />
+
+<img loading="lazy" src="/images/2017/08/equilux-side2.png" alt=""  />
+
+<img loading="lazy" src="/images/2017/08/equilux-side3.png" alt=""  />
+
+<img loading="lazy" src="/images/2017/08/clock2.png" alt=""  />
+
+<img loading="lazy" src="/images/2017/08/clock3.png" alt=""  />
+</p>
+<h5 id="power">Power<a hidden class="anchor" aria-hidden="true" href="#power">#</a></h5>
+<p>The led string if all rgb leds are on will draw about 3.6 Amps at 5 volts. This of course is way to much for the Arduino regulator. But most of the time not all led&rsquo;s will be on or at full brightness. Now I am using a switched 5.1 volt / 2 Amp power-supply that I had lying around. This power supply is directly connected to the + 5v on the arduino. So it&rsquo;s bypassing the regulator on the Arduino.</p>
+<h5 id="video">Video<a hidden class="anchor" aria-hidden="true" href="#video">#</a></h5>
+<p>Here is a short video overview from the first proto type, this on is fitted in a carton box, so nothing fancy yet. Now I need to get my hands on a laser cutter to build the casing.</p>
+<iframe src="https://player.vimeo.com/video/25255982" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<h5 id="code">Code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h5>
+<p>All the files, codes and sources of this project you can find on my <a title="equilux on github" href="https://github.com/dkruyt/equilux" target="_blank">github</a>.</p>
+<pre tabindex="0"><code class="language-clike" data-lang="clike">//
+// Equilux, a RGB Led Clock by Dennis Kruyt (dennis@kruyt.org) 2011
+// Inspired by the Equinox Clock from Bram Knaapen.
+//
+/*****************************************************************************/
+
+// LPD6803 lib from ladyada
+#include &quot;LPD6803.h&quot;
+
+// LPD6802 pins
+int dataPin = 4;       // 'green' wire
+int clockPin = 5;      // 'blue' wire
+// Don't forget to connect 'yellow' to ground and 'red' to +5V
+
+// LDR pin
+int LDRPin = A2;
+
+// Timer 1 is also used by the strip to send pixel clocks
+#include &lt;TimerOne.h&gt;
+
+// Set the first variable to the NUMBER of pixels. 60 = 60 pixels in a row
+LPD6803 strip = LPD6803(60, dataPin, clockPin);
+
+//wire and rtc
+#include &lt;Wire.h&gt;
+#include &quot;RTClib.h&quot;
+
+// RTC_Millis is for a soft rtc
+//RTC_Millis RTC;
+RTC_DS1307 RTC;
+
+// Define second, minute, hour
+int s;
+int m;
+int h;
+
+// Brightness fade up (1 or 2) depens on LDR reading
+int z;
+
+// Set brightness min/max 31
+int MinBright = 6;
+int MaxBright = 31;
+int brightness;
+
+// LDR
+int LDRValue;
+
+// Pin 13 is used for a sec blink led
+int led = 13;
+volatile int state = LOW;
+  
+void setup() {
+  
+  Serial.begin(19200);
+  
+  //start wire and rtc
+  Wire.begin();
+  RTC.begin();
+  
+  if (! RTC.isrunning()) {
+    Serial.println(&quot;RTC is NOT running!&quot;);
+    // following line sets the RTC to the date &amp; time this sketch was compiled
+    RTC.adjust(DateTime(__DATE__, __TIME__));
+  }
+  
+  // set 1hz sqw on DS1307 pin 7, we will using this for a interrupt on arduino pin 2
+  Wire.beginTransmission(0x68);              // write the control register
+  Wire.send(0x07);                           // register address 07H)
+  Wire.send(0x90);                           // 0x90=1Hz, 0x91=4kHz, 0x92=8kHz, 0x93=32kHz
+  Wire.endTransmission();
+  
+  // The Arduino needs to clock out the data to the pixels
+  // this happens in interrupt timer 1, we can change how often
+  // to call the interrupt. setting CPUmax to 100 will take nearly all all the
+  // time to do the pixel updates and a nicer/faster display, 
+  // especially with strands of over 100 dots.
+  // (Note that the max is 'pessimistic', its probably 10% or 20% less in reality)
+  strip.setCPUmax(95);  // up this if the strand flickers or is slow
+  
+  // Start up the LED counter
+  strip.begin();
+  
+  // Update the strip, to start they are all 'off'
+  strip.show();
+  
+  //Attach pin 7 from DS1307 to Arduino pin 2 and call function clock
+  attachInterrupt(0, clock, FALLING);
+  
+  // Set pin 13 (led) to output mode
+  pinMode(led, OUTPUT);
+
+}
+
+// Empty loop, all is done by the 1hz interupt on pin 2
+void loop () { }
+
+
+void clock() {
+    
+  //attach Interrupt stops the strip, so start it again  
+  strip.begin();
+    
+  //blink led on pin 13
+  digitalWrite(led, state);
+  state = !state;
+
+  //Get current time
+  DateTime now = RTC.now();  
+  
+  // mapping hour 24 =&gt; 12 =&gt; 60
+  h = now.hour(), DEC;
+  if (h &gt; 12) { h = h - 12; } 
+  //else if (h = 12) { h == 0; }
+  h = map(h, 0, 12, 0, 60);
+  
+  if ( m &lt; 15 ) { h == h; }
+  else if ( m &lt; 30 ) { h = h + 1; }
+  else if ( m &lt; 45 ) { h = h + 2; }
+  else if ( m &lt; 59 ) { h = h + 3; }
+     
+  m = now.minute(), DEC;
+  s = now.second(), DEC;
+  
+    // Get LDR vaulue and set brightness  
+    LDRValue = analogRead(LDRPin);
+    brightness = map(LDRValue, 0, 1023, MaxBright, MinBright);
+  
+    // set increase step
+    if ( brightness &lt; 20 ) {
+      z = 1;
+    } else {
+      z = 2;
+    }
+    
+    //todo
+    //strip.setPixelColor((h - 1), 0, 0, 0);
+    
+    strip.setPixelColor((m - 1), 0, 0, 0);
+    //unset -2 ,-3 seconds
+    strip.setPixelColor((s - 2 ), 0, 0, 0);
+    strip.setPixelColor((s - 3 ), 0, 0, 0);
+    
+    // clear transistion from 59 -&gt; 0
+    if (s == 0) { strip.setPixelColor((58), 0, 0, 0); }
+    if (s == 1) { strip.setPixelColor((59), 0, 0, 0); }  
+    if (m == 0) { strip.setPixelColor((59), 0, 0, 0); }
+    
+    //start fade up/down
+    for (int y = 1; y &lt; brightness; y = y + z) {
+  
+         strip.setPixelColor((s - 1 ), (brightness - y), 0, 0);
+         if (s == 0) { strip.setPixelColor(59, (brightness - y), 0, 0); }  
+         strip.setPixelColor(s, brightness, 0, 0); 
+         strip.setPixelColor((s + 1 ), y, 0, 0);
+         if (s == 59) { strip.setPixelColor(0, y, 0, 0); } 
+        
+         strip.setPixelColor(m, 0, brightness, 0);  
+         strip.setPixelColor(h, 0, 0, brightness); 
+         
+         // second equals minute
+         if ((s + 1) == m) { strip.setPixelColor(s + 1, y, brightness, 0); } 
+         if (s == m) { strip.setPixelColor(s, brightness, brightness, 0); } 
+         if ((s - 1) == m) { strip.setPixelColor(s - 1, (brightness - y), brightness, 0); } 
+         
+         // second equals hour
+         if ((s + 1) == h) { strip.setPixelColor(s + 1, y, 0, brightness); } 
+         if (s == h) { strip.setPixelColor(s, brightness, 0, brightness); }
+         if ((s - 1) == h) { strip.setPixelColor(s - 1, (brightness - y), 0, brightness); } 
+     
+         // update strip
+         strip.show();
+         
+         delay(105 - (2 * y)); 
+     }
+   
+    // Debug   
+    //Serial.print(now.year(), DEC);
+    //Serial.print('/');
+    //Serial.print(now.month(), DEC);
+    //Serial.print('/');
+    //Serial.print(now.day(), DEC);
+    //Serial.print(' ');
+    //Serial.print(now.hour(), DEC);
+    //Serial.print(':');
+    //Serial.print(now.minute(), DEC);
+    //Serial.print(':');
+    //Serial.print(now.second(), DEC);
+    //Serial.println();
+    //Serial.println(h); 
+
+}
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kruyt.org/tags/arduino/">arduino</a></li>
+      <li><a href="https://kruyt.org/tags/clock/">clock</a></li>
+      <li><a href="https://kruyt.org/tags/ds1307/">ds1307</a></li>
+      <li><a href="https://kruyt.org/tags/Equilux/">Equilux</a></li>
+      <li><a href="https://kruyt.org/tags/hack42/">hack42</a></li>
+      <li><a href="https://kruyt.org/tags/led/">led</a></li>
+      <li><a href="https://kruyt.org/tags/rgb/">rgb</a></li>
+      <li><a href="https://kruyt.org/tags/shield/">shield</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="https://kruyt.org/">Dennis Kruyt</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

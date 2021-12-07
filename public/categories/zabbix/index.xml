@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>zabbix on Dennis Kruyt</title>
+    <link>https://kruyt.org/categories/zabbix/</link>
+    <description>Recent content in zabbix on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 May 2019 16:45:52 +0000</lastBuildDate><atom:link href="https://kruyt.org/categories/zabbix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zabbix Pushover Alert script</title>
+      <link>https://kruyt.org/zabbix-pushover-alert-script/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/zabbix-pushover-alert-script/</guid>
+      <description>At home and at work we are running Zabbix for monitoring, for alerting I use Pushover. There are some scripts that have Zabbix and Pushover integration on share.zabbix.com, but none of them have priority support and have inline image for Pushover.
+On my GitHub you can find a alertscript for Zabbix and Pushover. Pushover has also a dark theme, but the Zabbix graphs are still light. So there is an option in the script to invert the graphs.</description>
+    </item>
+    
+  </channel>
+</rss>

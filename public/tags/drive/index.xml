@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>drive on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/drive/</link>
+    <description>Recent content in drive on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 24 Mar 2012 20:53:00 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/drive/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Imperial march on floppy drives</title>
+      <link>https://kruyt.org/imperial-march-on-floppy-drives/</link>
+      <pubDate>Sat, 24 Mar 2012 20:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/imperial-march-on-floppy-drives/</guid>
+      <description>Just for fun, try to play music with old floppy drives and an Arduino.</description>
+    </item>
+    
+  </channel>
+</rss>

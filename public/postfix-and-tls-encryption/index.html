@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Postfix and TLS encryption | Dennis Kruyt</title>
+<meta name="keywords" content="tls, ssl, postfix, email, mail, startssl, mta-sts, Renegotiation" />
+<meta name="description" content="With hackers around every corner, governments wants to read your emails, now a days encryption is a necessity. Now most major sites are only available on https, and more and more IM are using encryption. But what about and old protocol email that is still very popular and we cant go without it any more. How can we increase security for this?
+Of course you can use S/MIME or PGP and have end to end encryption, but the problem that in transit between mail servers the from, to, cc, and subject fields are not encrypted.">
+<meta name="author" content="Dennis Kruyt">
+<link rel="canonical" href="https://kruyt.org/postfix-and-tls-encryption/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kruyt.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kruyt.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kruyt.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://kruyt.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://kruyt.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.89.4" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Postfix and TLS encryption" />
+<meta property="og:description" content="With hackers around every corner, governments wants to read your emails, now a days encryption is a necessity. Now most major sites are only available on https, and more and more IM are using encryption. But what about and old protocol email that is still very popular and we cant go without it any more. How can we increase security for this?
+Of course you can use S/MIME or PGP and have end to end encryption, but the problem that in transit between mail servers the from, to, cc, and subject fields are not encrypted." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kruyt.org/postfix-and-tls-encryption/" />
+<meta property="og:image" content="https://kruyt.org/images/2019/09/photo-1509822929063-6b6cfc9b42f2.jpeg" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2017-08-04T19:05:26&#43;00:00" />
+<meta property="article:modified_time" content="2017-08-04T19:05:26&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://kruyt.org/images/2019/09/photo-1509822929063-6b6cfc9b42f2.jpeg" />
+<meta name="twitter:title" content="Postfix and TLS encryption"/>
+<meta name="twitter:description" content="With hackers around every corner, governments wants to read your emails, now a days encryption is a necessity. Now most major sites are only available on https, and more and more IM are using encryption. But what about and old protocol email that is still very popular and we cant go without it any more. How can we increase security for this?
+Of course you can use S/MIME or PGP and have end to end encryption, but the problem that in transit between mail servers the from, to, cc, and subject fields are not encrypted."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kruyt.org/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Postfix and TLS encryption",
+      "item": "https://kruyt.org/postfix-and-tls-encryption/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Postfix and TLS encryption",
+  "name": "Postfix and TLS encryption",
+  "description": "With hackers around every corner, governments wants to read your emails, now a days encryption is a necessity. Now most major sites are only available on https, and more and more IM are using encryption. But what about and old protocol email that is still very popular and we cant go without it any more. How can we increase security for this?\nOf course you can use S/MIME or PGP and have end to end encryption, but the problem that in transit between mail servers the from, to, cc, and subject fields are not encrypted.",
+  "keywords": [
+    "tls", "ssl", "postfix", "email", "mail", "startssl", "mta-sts", "Renegotiation"
+  ],
+  "articleBody": "With hackers around every corner, governments wants to read your emails, now a days encryption is a necessity. Now most major sites are only available on https, and more and more IM are using encryption. But what about and old protocol email that is still very popular and we cant go without it any more. How can we increase security for this?\nOf course you can use S/MIME or PGP and have end to end encryption, but the problem that in transit between mail servers the from, to, cc, and subject fields are not encrypted. For this we can use Transport Layer Security (TLS) encryption between the smtp servers. Now in June 2018 from Google’s perspective 89% outbound mails and 88% inbound mails are using encryption.\nIn this post I will show how I setup a smtp server running Postfix with TLS encryption and with the correct cyphers. So that email between smtp servers where possible is using strong email encryption.\nPostfix mail daemon First you need to know that postfix has separate mail daemons for handling different flow of mail. And each daemon is configured separately. So it is possible to accept weak ciphers but you only use strong ciphers when delivering mail to the out side.\nThe two that are responsible for handling mail in and out from the world are:\nsmtpd - The SMTP daemon process for handling incoming mail and delivering to the appropriate internal location.\nsmtp - The SMTP daemon process for delivering mail out to the world.\nDefault config test Lets see first how good this default config is for incoming mail to the smtpd daemon. Normally I would test it with SSLLABS sadly this only can check https can’t check smtp/STARTTLS. A alternative is immuniweb but we will use this later. There is also a shellscript self hosted tool on https://testssl.sh/ which can check your SSL/TLS settings and vulnerabilities of your mail server.\nTo test with testssl run the following after installing.\n~./testssl.sh -t smtp localhost:25 Below is a summery of the issues with the default postfix config on Ubuntu 16.04.\nLets see how we can fix these issues.\nTrusted certificate While it is not mandatory for mailserver to have a trusted certificate, now a day’s it is easy and free to get one from LetsEncrypt. So request one and use it for Postfix. Make sure you use the fullchain, so that intermediates in the chain are also sent.\nsmtpd_tls_cert_file=/etc/letsencrypt/live/domain.nl/fullchain.pem smtpd_tls_key_file=/etc/letsencrypt/live/domain.nl/privkey.pem smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache What about a client certificate for the smtp daemon? For this the readme from postfix is very clear http://www.postfix.org/TLS_README.html\n Do not configure Postfix SMTP client certificates unless you must present client TLS certificates to one or more servers. Client certificates are not usually needed, and can cause problems in configurations that work well without them. The recommended setting is to let the defaults stand:\n Disable SSL,TLSv1 After that we disable all SSL and TLSv1, allow only high ciphers for both smtp and smtpd. This will mitigate BEAST. And allow only high ciphers. And we want to negotiate the strongest available cipher available with the remote server.\nsmtpd_tls_protocols = TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3 smtp_tls_protocols = TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3 smtp_tls_ciphers = high smtpd_tls_ciphers = high smtpd_tls_mandatory_protocols = TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3 smtp_tls_mandatory_protocols = TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3 smtp_tls_mandatory_ciphers = high smtpd_tls_mandatory_ciphers = high ######Disable deprecated ciphers And exclude some deprecated not so secure ciphers.\nsmtpd_tls_mandatory_exclude_ciphers = MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL smtpd_tls_exclude_ciphers = MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL smtp_tls_mandatory_exclude_ciphers = MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL smtp_tls_exclude_ciphers = MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL tls_preempt_cipherlist = yes ######Use opportunistic encryption With mailserver we want to use opportunistic encryption. We don’t force encryption, If we do so this sounds secure but not all other mail servers supports encryption. So worse case scenario you will not receive from some other mail servers or be able to sent to some other mail server that dont support TLS.\nThis is also stated in RFC2487\n A publicly-referenced SMTP server MUST NOT require use of the STARTTLS extension in order to deliver mail locally. This rule prevents the STARTTLS extension from damaging the interoperability of the Internet’s SMTP infrastructure.\n To set oppertunistic encryption enable the following settings.\nsmtpd_tls_security_level = may smtp_tls_security_level = may Quoted from http://www.postfix.org/TLS_README.html\n At the “may” TLS security level, TLS encryption is opportunistic. The SMTP transaction is encrypted if the STARTTLS ESMTP feature is supported by the server. Otherwise, messages are sent in the clear. Opportunistic TLS can be configured by setting “smtp_tls_security_level = may”.\n  With this, the Postfix SMTP server announces STARTTLS support to remote SMTP clients, but does not require that clients use TLS encryption.\n  You can ENFORCE the use of TLS, so that the Postfix SMTP server announces STARTTLS and accepts no mail without TLS encryption, by setting “smtpd_tls_security_level = encrypt”. According to RFC 2487 this MUST NOT be applied in case of a publicly-referenced Postfix SMTP server. This option is off by default and should only seldom be used.\n We could also validate remote certificates for the smtp daemon with verify or secure like you would normal do with https in a browser, but with a mail server this is not common since the majority of them will fail validation due to poor setup. So you will lose emails if you use this.\nWith these settings we are still susceptible for a downgrade attack. This because is email has been invented in 1982 and SSL/TLS in 1999 so security needed to be adopted to an existing protocol to maintain backward compatibility. And we still want to be able to send and receive emails from legacy or poorly configured servers.\nThere are some options coming to solve these issues. Like mta-sts or a startssl policy list. But these are still very new and not broadly supported yet (June 2018). Maybe an other time I make a post about these.\nSecure Client-Initiated Renegotiation On a Ubuntu 16.04 with postfix version 3.1.0-3ubuntu0.3 and openssl version 1.0.2g-1ubuntu4.15 you can’t solve this issue.\nSecure Client-Initiated Renegotiation VULNERABLE (NOT ok), potential DoS threat\nBut this is not a major issue.\n The impact of TLS-based attacks on SMTP should not be over-stated. Presently, most SMTP clients don’t verify the TLS certificates of SMTP servers. Such clients are already vulnerable to ordinary man-in-the-middle attacks, and TLS renegotiation introduces no new threats for them.\n  The Postfix SMTP server with OpenSSL is not affected by the TLS renegotiation attack that redirects and modifies SMTP mail, due to accidental details of the Postfix and OpenSSL implementations.\n On Ubuntu 18.04 we have postfix 3.3.0-1ubuntu0.2 and openssl 1.1.1-1ubuntu2.1~18.04.4, with openssl 1.1.1 we can disable the renegotiation via a tls_ssl_option. Then the vulnerability is gone.\npostfix 3.3\n# NO_RENEGOTIATION postfix 3.3 openssl 1.1.1 tls_ssl_options = 0x40000000 And in postfix 3.4 you can set it also without the hex code.\n# NO_RENEGOTIATION postfix 3.4 and openssl 1.1.1 tls_ssl_options = NO_RENEGOTIATION Test new config After these settings, and you restart postfix and check again with testssl.sh, all issue’s reported earlier are gone. Wit maybe the eception of the enegotiation issue depending of you postfix/openssl version.\nimmuniweb An other tool you can test online with is from https://www.immuniweb.com/ssl/ these can also check mailservers, make sure you use :25 at the end of your hostname. With the above SSL/TLS settings for postfix you get an A or an A+, depending on your postfix and openssl version. If you are using this site, make sure to hit refresh after you changed your postfix config or else you will get cached results.\nimmuniweb will give the following warning. This is due to the fact that postfix doesn’t support OCSP stapling. So we can not do anything about this, so we will ignore this. That is also one of the issues found in HIPAA COMPLIANT or NIST.\nSERVER DOES NOT SUPPORT OCSP STAPLING\nCheck the logs / headers if it is working How do I know when mail is delivered over TLS, you can ook in the mail logs. But before this is logged, you need to enable the tls log level.\nsmtpd_tls_loglevel = 2 smtp_tls_loglevel = 2 After that you will see something like this for an incoming mail daemon smtpd, in this case from google/gmail.\nAug 4 18:58:41 mail postfix/smtpd[18454]: setting up TLS connection from mail-oi0-f43.google.com[209.85.218.43] Aug 4 18:58:41 mail postfix/smtpd[18454]: mail-oi0-f43.google.com[209.85.218.43]: TLS cipher list \"aNULL:-aNULL:HIGH:@STRENGTH:!MD5:!DES:!ADH:!RC4:!PSD:!SRP:!3DES:!eNULL:!aNULL\" Aug 4 18:58:41 mail postfix/smtpd[18454]: mail-oi0-f43.google.com[209.85.218.43]: Issuing session ticket, key expiration: 1501874441 Aug 4 18:58:41 mail postfix/smtpd[18454]: Anonymous TLS connection established from mail-oi0-f43.google.com[209.85.218.43]: TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits) And for an outgoing mail using the smtp daemon.\nAug 4 19:19:02 mail postfix/smtp[18987]: setting up TLS connection to gmail-smtp-in.l.google.com[173.194.69.27]:25 Aug 4 19:19:02 mail postfix/smtp[18987]: gmail-smtp-in.l.google.com[173.194.69.27]:25: TLS cipher list \"aNULL:-aNULL:HIGH:@STRENGTH:!MD5:!DES:!ADH:!RC4:!PSD:!SRP:!3DES:!eNULL:!aNULL\" Aug 4 19:19:02 mail postfix/smtp[18987]: gmail-smtp-in.l.google.com[173.194.69.27]:25: depth=2 verify=0 subject=/C=US/O=GeoTrust Inc./CN=GeoTrust Global CA Aug 4 19:19:02 mail postfix/smtp[18987]: gmail-smtp-in.l.google.com[173.194.69.27]:25: depth=1 verify=1 subject=/C=US/O=Google Inc/CN=Google Internet Authority G2 Aug 4 19:19:02 mail postfix/smtp[18987]: gmail-smtp-in.l.google.com[173.194.69.27]:25: depth=0 verify=1 subject=/C=US/ST=California/L=Mountain View/O=Google Inc/CN=mx.google.com Aug 4 19:19:02 mail postfix/smtp[18987]: gmail-smtp-in.l.google.com[173.194.69.27]:25: subject_CN=mx.google.com, issuer_CN=Google Internet Authority G2, fingerprint=05:DF:99:DD:61:DA:84:5C:77:EF:5B:72:5D:05:B1:52, pkey_fingerprint=EC:A8:0A:1E:05:F2:51:48:B5:DC:1C:A2:78:5E:ED:DE Aug 4 19:19:02 mail postfix/smtp[18987]: Untrusted TLS connection established to gmail-smtp-in.l.google.com[173.194.69.27]:25: TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits) If you want the information in the email headers you can enable the following option.\nsmtpd_tls_received_header = yes Then if you view the headers of the email message you will see wich ciphers was used for this connection.\nReceived: from mail-oi0-f47.google.com (mail-oi0-f47.google.com [209.85.218.47]) (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)) (No client certificate requested) A oneliner to check how many connections with wich cyphers are made.\ndennis@mailserver:/var/log grep \"TLS connection established\" mail.log | sed 's/.*: //g' | sort | uniq -c | sort -rn 1730 TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits) 1522 TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits) 145 TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits) 20 TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits) 15 TLSv1.1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits) 7 TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits) 5 TLSv1.2 with cipher AES128-SHA256 (128/128 bits) 4 TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits) 4 TLSv1.2 with cipher AES256-SHA256 (256/256 bits) 4 TLSv1.2 with cipher AES256-SHA (256/256 bits) 4 TLSv1.2 with cipher AES128-SHA (128/128 bits) 4 TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits) 4 TLSv1.1 with cipher DHE-RSA-AES256-SHA (256/256 bits) 3 TLSv1.1 with cipher AES256-SHA (256/256 bits) 3 TLSv1.1 with cipher AES128-SHA (128/128 bits) 2 TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits) 2 TLSv1.2 with cipher ECDHE-RSA-AES128-SHA (128/128 bits) 2 TLSv1.2 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits) 2 TLSv1.2 with cipher DHE-RSA-CAMELLIA128-SHA (128/128 bits) 2 TLSv1.2 with cipher DHE-RSA-AES256-SHA256 (256/256 bits) 2 TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits) 2 TLSv1.2 with cipher DHE-RSA-AES128-SHA256 (128/128 bits) 2 TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits) 2 TLSv1.2 with cipher DHE-RSA-AES128-GCM-SHA256 (128/128 bits) 2 TLSv1.2 with cipher CAMELLIA256-SHA (256/256 bits) 2 TLSv1.2 with cipher CAMELLIA128-SHA (128/128 bits) 2 TLSv1.1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits) 2 TLSv1.1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits) 2 TLSv1.1 with cipher DHE-RSA-CAMELLIA128-SHA (128/128 bits) 2 TLSv1.1 with cipher DHE-RSA-AES128-SHA (128/128 bits) 2 TLSv1.1 with cipher CAMELLIA256-SHA (256/256 bits) 2 TLSv1.1 with cipher CAMELLIA128-SHA (128/128 bits) But if you want more real connections we need to filter out some internet search/scanning engine. So we filter shodan, immuniweb and internet-census. After that we notice that we only had TLSv1.2 connection!\ndennis@mailserver:/var/log grep \"TLS connection established\" mail.log egrep -v \"(shodan|immuniweb|internet-census)\" | sed 's/.*: //g' | sort | uniq -c | sort -rn 1700 TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits) 1520 TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits) 143 TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits) 10 TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits) 3 TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits) 1 TLSv1.2 with cipher AES128-SHA256 (128/128 bits) After implementing these settings, your mailserver will exchange emails with other email server using high ‘secure’ encryption if possible.\nChangelog Update June 2018 Added mta-sts and startssl policy list info and links.\nUpdate September 2019 Added oneliner.\nUpdate September 2019 When I wrote this guide I had used Ubuntu 16.04 for testing. With Ubuntu 18.04 and Postfix, TLS 1.3 is also supported.\nUpdate September 2019 Added /rewrite Secure Client-Initiated Renegotiation.\n",
+  "wordCount" : "2008",
+  "inLanguage": "en",
+  "image":"https://kruyt.org/images/2019/09/photo-1509822929063-6b6cfc9b42f2.jpeg","datePublished": "2017-08-04T19:05:26Z",
+  "dateModified": "2017-08-04T19:05:26Z",
+  "author":{
+    "@type": "Person",
+    "name": "Dennis Kruyt"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kruyt.org/postfix-and-tls-encryption/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dennis Kruyt",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kruyt.org/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kruyt.org/" accesskey="h" title="Dennis Kruyt (Alt + H)">Dennis Kruyt</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Postfix and TLS encryption
+    </h1>
+    <div class="post-meta"><span title='2017-08-04 19:05:26 +0000 UTC'>August 4, 2017</span>&nbsp;·&nbsp;Dennis Kruyt
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://kruyt.org/images/2019/09/photo-1509822929063-6b6cfc9b42f2.jpeg" alt="">
+        
+</figure>
+  <div class="post-content"><p>With hackers around every corner, governments wants to read your emails, now a days encryption is a necessity. Now most major sites are only available on https, and more and more IM are using encryption. But what about and old protocol email that is still very popular and we cant go without it any more. How can we increase security for this?</p>
+<p>Of course you can use S/MIME or PGP and have end to end encryption, but the problem that in transit between mail servers the from, to, cc, and subject fields are not encrypted. For this we can use Transport Layer Security (TLS) encryption between the smtp servers. Now in June 2018 from <a href="https://transparencyreport.google.com/safer-email/overview?hl=en">Google&rsquo;s perspective</a> 89% outbound mails and 88% inbound mails are using encryption.</p>
+<p>In this post I will show how I setup a smtp server running Postfix with TLS encryption and with the correct cyphers. So that email between smtp servers where possible is using strong email encryption.</p>
+<h6 id="postfix-mail-daemon">Postfix mail daemon<a hidden class="anchor" aria-hidden="true" href="#postfix-mail-daemon">#</a></h6>
+<p>First you need to know that postfix has separate mail daemons for handling different flow of mail. And each daemon is configured separately. So it is possible to accept weak ciphers but you only use strong ciphers when delivering mail to the out side.</p>
+<p>The two that are responsible for handling mail in and out from the world are:</p>
+<p><strong>smtpd</strong> - The SMTP daemon process for handling incoming mail and delivering to the appropriate internal location.</p>
+<p><strong>smtp</strong> - The SMTP daemon process for delivering mail out to the world.</p>
+<h6 id="default-config-test">Default config test<a hidden class="anchor" aria-hidden="true" href="#default-config-test">#</a></h6>
+<p>Lets see first how good this default config is for incoming mail to the <strong>smtpd</strong> daemon. Normally I would test it with <a href="https://ssllabs.com">SSLLABS</a> sadly this only can check <em>https</em> can&rsquo;t check smtp/STARTTLS. A alternative is <a href="https://www.immuniweb.com/ssl/">immuniweb</a> but we will use this later. There is also a shellscript self hosted tool on <a href="https://testssl.sh/">https://testssl.sh/</a> which can check your SSL/TLS settings and vulnerabilities of your mail server.</p>
+<p>To test with testssl run the following after installing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~&gt;./testssl.sh -t smtp localhost:25
+</code></pre></div><p>Below is a summery of the issues with the default postfix config on Ubuntu 16.04.</p>
+<p><img loading="lazy" src="/images/2017/08/testssh-default-1.jpg" alt=""  />
+</p>
+<p>Lets see how we can fix these issues.</p>
+<h6 id="trusted-certificate">Trusted certificate<a hidden class="anchor" aria-hidden="true" href="#trusted-certificate">#</a></h6>
+<p>While it is not mandatory for mailserver to have a trusted certificate, now a day&rsquo;s it is easy and free to get one from LetsEncrypt. So request one and use it for Postfix. Make sure you use the <em>fullchain</em>, so that intermediates in the chain are also sent.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">smtpd_tls_cert_file<span style="color:#f92672">=</span>/etc/letsencrypt/live/domain.nl/fullchain.pem
+smtpd_tls_key_file<span style="color:#f92672">=</span>/etc/letsencrypt/live/domain.nl/privkey.pem
+smtpd_tls_session_cache_database <span style="color:#f92672">=</span> btree:<span style="color:#e6db74">${</span>data_directory<span style="color:#e6db74">}</span>/smtpd_scache
+smtp_tls_session_cache_database <span style="color:#f92672">=</span> btree:<span style="color:#e6db74">${</span>data_directory<span style="color:#e6db74">}</span>/smtp_scache
+</code></pre></div><p>What about a client certificate for the <em>smtp</em> daemon? For this the readme from postfix is very clear <a href="http://www.postfix.org/TLS_README.html">http://www.postfix.org/TLS_README.html</a></p>
+<blockquote>
+<p>Do not configure Postfix SMTP client certificates unless you must present client TLS certificates to one or more servers. Client certificates are not usually needed, and can cause problems in configurations that work well without them. The recommended setting is to let the defaults stand:</p>
+</blockquote>
+<h6 id="disable-ssltlsv1">Disable SSL,TLSv1<a hidden class="anchor" aria-hidden="true" href="#disable-ssltlsv1">#</a></h6>
+<p>After that we disable all SSL and TLSv1, allow only high ciphers for both <strong>smtp</strong> and <strong>smtpd</strong>. This will mitigate BEAST. And allow <strong>only</strong> high ciphers. And we want to negotiate the strongest available cipher available with the remote server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">smtpd_tls_protocols <span style="color:#f92672">=</span> TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3
+smtp_tls_protocols <span style="color:#f92672">=</span> TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3
+smtp_tls_ciphers <span style="color:#f92672">=</span> high
+smtpd_tls_ciphers <span style="color:#f92672">=</span> high
+smtpd_tls_mandatory_protocols <span style="color:#f92672">=</span> TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3
+smtp_tls_mandatory_protocols <span style="color:#f92672">=</span> TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3
+smtp_tls_mandatory_ciphers <span style="color:#f92672">=</span> high
+smtpd_tls_mandatory_ciphers <span style="color:#f92672">=</span> high
+</code></pre></div><p>######Disable deprecated ciphers
+And exclude some deprecated not so secure ciphers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">smtpd_tls_mandatory_exclude_ciphers <span style="color:#f92672">=</span> MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL
+smtpd_tls_exclude_ciphers <span style="color:#f92672">=</span> MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL
+smtp_tls_mandatory_exclude_ciphers <span style="color:#f92672">=</span> MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL
+smtp_tls_exclude_ciphers <span style="color:#f92672">=</span> MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL
+tls_preempt_cipherlist <span style="color:#f92672">=</span> yes
+</code></pre></div><p>######Use opportunistic encryption
+With mailserver we want to use <em>opportunistic</em> encryption. We don&rsquo;t force encryption, If we do so this sounds secure but not all other mail servers supports encryption. So worse case scenario you will not receive from some other mail servers or be able to sent to some other mail server that dont support TLS.</p>
+<p>This is also stated in RFC2487</p>
+<blockquote>
+<p>A publicly-referenced SMTP server <strong>MUST NOT</strong> require use of the STARTTLS extension in order to deliver mail locally. This rule prevents the STARTTLS extension from damaging the interoperability of the Internet&rsquo;s SMTP infrastructure.</p>
+</blockquote>
+<p>To set <em>oppertunistic</em> encryption enable the following settings.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">smtpd_tls_security_level <span style="color:#f92672">=</span> may
+smtp_tls_security_level <span style="color:#f92672">=</span> may
+</code></pre></div><p>Quoted from <a href="http://www.postfix.org/TLS_README.html">http://www.postfix.org/TLS_README.html</a></p>
+<blockquote>
+<p>At the &ldquo;may&rdquo; TLS security level, TLS encryption is opportunistic. The SMTP transaction is encrypted if the STARTTLS ESMTP feature is supported by the server. Otherwise, messages are sent in the clear. Opportunistic TLS can be configured by setting &ldquo;smtp_tls_security_level = may&rdquo;.</p>
+</blockquote>
+<blockquote>
+<p>With this, the Postfix SMTP server announces STARTTLS support to remote SMTP clients, but does not require that clients use TLS encryption.</p>
+</blockquote>
+<blockquote>
+<p>You can ENFORCE the use of TLS, so that the Postfix SMTP server announces STARTTLS and accepts no mail without TLS encryption, by setting &ldquo;smtpd_tls_security_level = encrypt&rdquo;. According to RFC 2487 this MUST NOT be applied in case of a publicly-referenced Postfix SMTP server. This option is off by default and should only seldom be used.</p>
+</blockquote>
+<p>We could also validate remote certificates for the <em>smtp</em> daemon with <code>verify</code> or <code>secure</code> like you would normal do with <em>https</em> in a browser, but with a mail server this is not common since the majority of them will fail validation due to poor setup. So you will lose emails if you use this.</p>
+<p>With these settings we are still susceptible for a downgrade attack. This because is email has been invented in 1982 and SSL/TLS in 1999 so security needed to be adopted to an existing protocol to maintain backward compatibility. And we still want to be able to send and receive emails from legacy or poorly configured servers.</p>
+<p>There are some options coming to solve these issues. Like <a href="https://datatracker.ietf.org/doc/draft-ietf-uta-mta-sts/">mta-sts</a> or a <a href="https://starttls-everywhere.org/">startssl policy list</a>. But these are still very new and not broadly supported yet (June 2018). Maybe an other time I make a post about these.</p>
+<h6 id="secure-client-initiated-renegotiation">Secure Client-Initiated Renegotiation<a hidden class="anchor" aria-hidden="true" href="#secure-client-initiated-renegotiation">#</a></h6>
+<p>On a Ubuntu 16.04 with postfix version 3.1.0-3ubuntu0.3 and openssl version 1.0.2g-1ubuntu4.15 you can&rsquo;t solve this issue.</p>
+<p><code>Secure Client-Initiated Renegotiation     VULNERABLE (NOT ok), potential DoS threat</code></p>
+<p>But this is not a major issue.</p>
+<blockquote>
+<p>The impact of TLS-based attacks on SMTP should not be over-stated. Presently, most SMTP clients don&rsquo;t verify the TLS certificates of SMTP servers. Such clients are already vulnerable to ordinary man-in-the-middle attacks, and TLS renegotiation introduces no new threats for them.</p>
+</blockquote>
+<blockquote>
+<p>The Postfix SMTP server with OpenSSL is not affected by the TLS renegotiation attack that redirects and modifies SMTP mail, due to accidental details of the Postfix and OpenSSL implementations.</p>
+</blockquote>
+<p>On Ubuntu 18.04 we have postfix 3.3.0-1ubuntu0.2 and openssl 1.1.1-1ubuntu2.1~18.04.4, with openssl 1.1.1 we can disable the renegotiation via a tls_ssl_option. Then the vulnerability is gone.</p>
+<p>postfix 3.3</p>
+<pre tabindex="0"><code># NO_RENEGOTIATION postfix 3.3 openssl &gt;1.1.1
+tls_ssl_options = 0x40000000
+</code></pre><p>And in <a href="http://www.postfix.org/postconf.5.html">postfix 3.4</a> you can set it also without the hex code.</p>
+<pre tabindex="0"><code># NO_RENEGOTIATION postfix 3.4 and openssl &gt;1.1.1
+tls_ssl_options = NO_RENEGOTIATION
+</code></pre><h6 id="test-new-config">Test new config<a hidden class="anchor" aria-hidden="true" href="#test-new-config">#</a></h6>
+<p>After these settings, and you restart postfix and check again with <code>testssl.sh</code>, all issue&rsquo;s reported earlier are gone. Wit maybe the eception of the enegotiation issue depending of you postfix/openssl version.</p>
+<h6 id="immuniweb">immuniweb<a hidden class="anchor" aria-hidden="true" href="#immuniweb">#</a></h6>
+<p>An other tool you can test online with is from <a href="https://www.immuniweb.com/ssl/">https://www.immuniweb.com/ssl/</a> these can also check mailservers, make sure you use <code>:25</code> at the end of your hostname. With the above SSL/TLS settings for postfix you get an A or an A+, depending on your postfix and openssl version. If you are using this site, make sure to hit refresh after you changed your postfix config or else you will get cached results.</p>
+<p><img loading="lazy" src="/images/2019/09/SSL_Security.jpg" alt="SSL_Security"  />
+</p>
+<p>immuniweb will give the following warning. This is due to the fact that postfix doesn&rsquo;t support OCSP stapling. So we can not do anything about this, so we will ignore this. That is also one of the issues found in HIPAA COMPLIANT or NIST.</p>
+<p><code>SERVER DOES NOT SUPPORT OCSP STAPLING</code></p>
+<h6 id="check-the-logs--headers-if-it-is-working">Check the logs / headers if it is working<a hidden class="anchor" aria-hidden="true" href="#check-the-logs--headers-if-it-is-working">#</a></h6>
+<p>How do I know when mail is delivered over TLS, you can ook in the
+mail logs. But before this is logged, you need to enable the tls log level.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">smtpd_tls_loglevel <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+smtp_tls_loglevel <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</code></pre></div><p>After that you will see something like this for an incoming mail daemon <em>smtpd</em>, in this case from google/gmail.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">18</span>:<span style="color:#ae81ff">58</span>:<span style="color:#ae81ff">41</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtpd[<span style="color:#ae81ff">18454</span>]: setting up TLS <span style="color:#66d9ef">connection</span> <span style="color:#66d9ef">from</span> mail<span style="color:#f92672">-</span>oi0<span style="color:#f92672">-</span>f43.google.com[<span style="color:#ae81ff">209</span>.<span style="color:#ae81ff">85</span>.<span style="color:#ae81ff">218</span>.<span style="color:#ae81ff">43</span>]
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">18</span>:<span style="color:#ae81ff">58</span>:<span style="color:#ae81ff">41</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtpd[<span style="color:#ae81ff">18454</span>]: mail<span style="color:#f92672">-</span>oi0<span style="color:#f92672">-</span>f43.google.com[<span style="color:#ae81ff">209</span>.<span style="color:#ae81ff">85</span>.<span style="color:#ae81ff">218</span>.<span style="color:#ae81ff">43</span>]: TLS cipher list <span style="color:#e6db74">&#34;aNULL:-aNULL:HIGH:@STRENGTH:!MD5:!DES:!ADH:!RC4:!PSD:!SRP:!3DES:!eNULL:!aNULL&#34;</span>
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">18</span>:<span style="color:#ae81ff">58</span>:<span style="color:#ae81ff">41</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtpd[<span style="color:#ae81ff">18454</span>]: mail<span style="color:#f92672">-</span>oi0<span style="color:#f92672">-</span>f43.google.com[<span style="color:#ae81ff">209</span>.<span style="color:#ae81ff">85</span>.<span style="color:#ae81ff">218</span>.<span style="color:#ae81ff">43</span>]: Issuing <span style="color:#66d9ef">session</span> ticket, <span style="color:#66d9ef">key</span> expiration: <span style="color:#ae81ff">1501874441</span>
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">18</span>:<span style="color:#ae81ff">58</span>:<span style="color:#ae81ff">41</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtpd[<span style="color:#ae81ff">18454</span>]: Anonymous TLS <span style="color:#66d9ef">connection</span> established <span style="color:#66d9ef">from</span> mail<span style="color:#f92672">-</span>oi0<span style="color:#f92672">-</span>f43.google.com[<span style="color:#ae81ff">209</span>.<span style="color:#ae81ff">85</span>.<span style="color:#ae81ff">218</span>.<span style="color:#ae81ff">43</span>]: TLSv1.<span style="color:#ae81ff">2</span> <span style="color:#66d9ef">with</span> cipher ECDHE<span style="color:#f92672">-</span>RSA<span style="color:#f92672">-</span>AES256<span style="color:#f92672">-</span>GCM<span style="color:#f92672">-</span>SHA384 (<span style="color:#ae81ff">256</span><span style="color:#f92672">/</span><span style="color:#ae81ff">256</span> bits)
+</code></pre></div><p>And for an outgoing mail using the <em>smtp</em> daemon.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">02</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtp[<span style="color:#ae81ff">18987</span>]: setting up TLS <span style="color:#66d9ef">connection</span> <span style="color:#66d9ef">to</span> gmail<span style="color:#f92672">-</span>smtp<span style="color:#f92672">-</span><span style="color:#66d9ef">in</span>.l.google.com[<span style="color:#ae81ff">173</span>.<span style="color:#ae81ff">194</span>.<span style="color:#ae81ff">69</span>.<span style="color:#ae81ff">27</span>]:<span style="color:#ae81ff">25</span>
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">02</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtp[<span style="color:#ae81ff">18987</span>]: gmail<span style="color:#f92672">-</span>smtp<span style="color:#f92672">-</span><span style="color:#66d9ef">in</span>.l.google.com[<span style="color:#ae81ff">173</span>.<span style="color:#ae81ff">194</span>.<span style="color:#ae81ff">69</span>.<span style="color:#ae81ff">27</span>]:<span style="color:#ae81ff">25</span>: TLS cipher list <span style="color:#e6db74">&#34;aNULL:-aNULL:HIGH:@STRENGTH:!MD5:!DES:!ADH:!RC4:!PSD:!SRP:!3DES:!eNULL:!aNULL&#34;</span>
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">02</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtp[<span style="color:#ae81ff">18987</span>]: gmail<span style="color:#f92672">-</span>smtp<span style="color:#f92672">-</span><span style="color:#66d9ef">in</span>.l.google.com[<span style="color:#ae81ff">173</span>.<span style="color:#ae81ff">194</span>.<span style="color:#ae81ff">69</span>.<span style="color:#ae81ff">27</span>]:<span style="color:#ae81ff">25</span>: depth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> verify<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> subject<span style="color:#f92672">=/</span><span style="color:#66d9ef">C</span><span style="color:#f92672">=</span>US<span style="color:#f92672">/</span>O<span style="color:#f92672">=</span>GeoTrust Inc.<span style="color:#f92672">/</span>CN<span style="color:#f92672">=</span>GeoTrust <span style="color:#66d9ef">Global</span> CA
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">02</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtp[<span style="color:#ae81ff">18987</span>]: gmail<span style="color:#f92672">-</span>smtp<span style="color:#f92672">-</span><span style="color:#66d9ef">in</span>.l.google.com[<span style="color:#ae81ff">173</span>.<span style="color:#ae81ff">194</span>.<span style="color:#ae81ff">69</span>.<span style="color:#ae81ff">27</span>]:<span style="color:#ae81ff">25</span>: depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> verify<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> subject<span style="color:#f92672">=/</span><span style="color:#66d9ef">C</span><span style="color:#f92672">=</span>US<span style="color:#f92672">/</span>O<span style="color:#f92672">=</span>Google Inc<span style="color:#f92672">/</span>CN<span style="color:#f92672">=</span>Google Internet Authority G2
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">02</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtp[<span style="color:#ae81ff">18987</span>]: gmail<span style="color:#f92672">-</span>smtp<span style="color:#f92672">-</span><span style="color:#66d9ef">in</span>.l.google.com[<span style="color:#ae81ff">173</span>.<span style="color:#ae81ff">194</span>.<span style="color:#ae81ff">69</span>.<span style="color:#ae81ff">27</span>]:<span style="color:#ae81ff">25</span>: depth<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> verify<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> subject<span style="color:#f92672">=/</span><span style="color:#66d9ef">C</span><span style="color:#f92672">=</span>US<span style="color:#f92672">/</span>ST<span style="color:#f92672">=</span>California<span style="color:#f92672">/</span>L<span style="color:#f92672">=</span>Mountain <span style="color:#66d9ef">View</span><span style="color:#f92672">/</span>O<span style="color:#f92672">=</span>Google Inc<span style="color:#f92672">/</span>CN<span style="color:#f92672">=</span>mx.google.com
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">02</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtp[<span style="color:#ae81ff">18987</span>]: gmail<span style="color:#f92672">-</span>smtp<span style="color:#f92672">-</span><span style="color:#66d9ef">in</span>.l.google.com[<span style="color:#ae81ff">173</span>.<span style="color:#ae81ff">194</span>.<span style="color:#ae81ff">69</span>.<span style="color:#ae81ff">27</span>]:<span style="color:#ae81ff">25</span>: subject_CN<span style="color:#f92672">=</span>mx.google.com, issuer_CN<span style="color:#f92672">=</span>Google Internet Authority G2, fingerprint<span style="color:#f92672">=</span><span style="color:#ae81ff">05</span>:DF:<span style="color:#ae81ff">99</span>:DD:<span style="color:#ae81ff">61</span>:DA:<span style="color:#ae81ff">84</span>:<span style="color:#ae81ff">5</span><span style="color:#66d9ef">C</span>:<span style="color:#ae81ff">77</span>:EF:<span style="color:#ae81ff">5</span>B:<span style="color:#ae81ff">72</span>:<span style="color:#ae81ff">5</span>D:<span style="color:#ae81ff">05</span>:B1:<span style="color:#ae81ff">52</span>, pkey_fingerprint<span style="color:#f92672">=</span>EC:A8:<span style="color:#ae81ff">0</span>A:<span style="color:#ae81ff">1</span>E:<span style="color:#ae81ff">05</span>:F2:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">48</span>:B5:DC:<span style="color:#ae81ff">1</span><span style="color:#66d9ef">C</span>:A2:<span style="color:#ae81ff">78</span>:<span style="color:#ae81ff">5</span>E:ED:DE
+Aug  <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">19</span>:<span style="color:#ae81ff">02</span> mail <span style="color:#66d9ef">postfix</span><span style="color:#f92672">/</span>smtp[<span style="color:#ae81ff">18987</span>]: Untrusted TLS <span style="color:#66d9ef">connection</span> established <span style="color:#66d9ef">to</span> gmail<span style="color:#f92672">-</span>smtp<span style="color:#f92672">-</span><span style="color:#66d9ef">in</span>.l.google.com[<span style="color:#ae81ff">173</span>.<span style="color:#ae81ff">194</span>.<span style="color:#ae81ff">69</span>.<span style="color:#ae81ff">27</span>]:<span style="color:#ae81ff">25</span>: TLSv1.<span style="color:#ae81ff">2</span> <span style="color:#66d9ef">with</span> cipher ECDHE<span style="color:#f92672">-</span>RSA<span style="color:#f92672">-</span>AES128<span style="color:#f92672">-</span>GCM<span style="color:#f92672">-</span>SHA256 (<span style="color:#ae81ff">128</span><span style="color:#f92672">/</span><span style="color:#ae81ff">128</span> bits)
+</code></pre></div><p>If you want the information in the email headers you can enable the following option.</p>
+<pre tabindex="0"><code class="language-markup" data-lang="markup">smtpd_tls_received_header = yes
+</code></pre><p>Then if you view the headers of the email message you will see wich ciphers was used for this connection.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">Received: <span style="color:#66d9ef">from</span> mail<span style="color:#f92672">-</span>oi0<span style="color:#f92672">-</span>f47.google.com (mail<span style="color:#f92672">-</span>oi0<span style="color:#f92672">-</span>f47.google.com [<span style="color:#ae81ff">209</span>.<span style="color:#ae81ff">85</span>.<span style="color:#ae81ff">218</span>.<span style="color:#ae81ff">47</span>])
+	(<span style="color:#66d9ef">using</span> TLSv1.<span style="color:#ae81ff">2</span> <span style="color:#66d9ef">with</span> cipher ECDHE<span style="color:#f92672">-</span>RSA<span style="color:#f92672">-</span>AES256<span style="color:#f92672">-</span>GCM<span style="color:#f92672">-</span>SHA384 (<span style="color:#ae81ff">256</span><span style="color:#f92672">/</span><span style="color:#ae81ff">256</span> bits))
+	(<span style="color:#66d9ef">No</span> client certificate requested)
+</code></pre></div><p>A oneliner to check how many connections with wich cyphers are made.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dennis@mailserver:/var/log&gt; grep <span style="color:#e6db74">&#34;TLS connection established&#34;</span> mail.log | sed <span style="color:#e6db74">&#39;s/.*: //g&#39;</span> | sort | uniq -c | sort -rn
+   <span style="color:#ae81ff">1730</span> TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+   <span style="color:#ae81ff">1522</span> TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+    <span style="color:#ae81ff">145</span> TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+     <span style="color:#ae81ff">20</span> TLSv1.2 with cipher ECDHE-RSA-AES256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+     <span style="color:#ae81ff">15</span> TLSv1.1 with cipher ECDHE-RSA-AES256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">7</span> TLSv1.2 with cipher AES256-GCM-SHA384 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">5</span> TLSv1.2 with cipher AES128-SHA256 <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">4</span> TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">4</span> TLSv1.2 with cipher AES256-SHA256 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">4</span> TLSv1.2 with cipher AES256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">4</span> TLSv1.2 with cipher AES128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">4</span> TLSv1.2 with cipher AES128-GCM-SHA256 <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">4</span> TLSv1.1 with cipher DHE-RSA-AES256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">3</span> TLSv1.1 with cipher AES256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">3</span> TLSv1.1 with cipher AES128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher ECDHE-RSA-AES128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher DHE-RSA-CAMELLIA256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher DHE-RSA-CAMELLIA128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher DHE-RSA-AES256-SHA256 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher DHE-RSA-AES256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher DHE-RSA-AES128-SHA256 <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher DHE-RSA-AES128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher DHE-RSA-AES128-GCM-SHA256 <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher CAMELLIA256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.2 with cipher CAMELLIA128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.1 with cipher ECDHE-RSA-AES128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.1 with cipher DHE-RSA-CAMELLIA256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.1 with cipher DHE-RSA-CAMELLIA128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.1 with cipher DHE-RSA-AES128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.1 with cipher CAMELLIA256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">2</span> TLSv1.1 with cipher CAMELLIA128-SHA <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+</code></pre></div><p>But if you want more real connections we need to filter out some internet search/scanning engine. So we filter shodan, immuniweb and internet-census. After that we notice that we only had TLSv1.2 connection!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dennis@mailserver:/var/log&gt; grep <span style="color:#e6db74">&#34;TLS connection established&#34;</span> mail.log egrep -v <span style="color:#e6db74">&#34;(shodan|immuniweb|internet-census)&#34;</span> | sed <span style="color:#e6db74">&#39;s/.*: //g&#39;</span> | sort | uniq -c | sort -rn
+   <span style="color:#ae81ff">1700</span> TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+   <span style="color:#ae81ff">1520</span> TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+    <span style="color:#ae81ff">143</span> TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+     <span style="color:#ae81ff">10</span> TLSv1.2 with cipher ECDHE-RSA-AES256-SHA <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">3</span> TLSv1.2 with cipher AES256-GCM-SHA384 <span style="color:#f92672">(</span>256/256 bits<span style="color:#f92672">)</span>
+      <span style="color:#ae81ff">1</span> TLSv1.2 with cipher AES128-SHA256 <span style="color:#f92672">(</span>128/128 bits<span style="color:#f92672">)</span>
+</code></pre></div><p>After implementing these settings, your mailserver will exchange emails with other email server using high &lsquo;secure&rsquo; encryption if possible.</p>
+<h6 id="changelog">Changelog<a hidden class="anchor" aria-hidden="true" href="#changelog">#</a></h6>
+<p><em>Update June 2018</em>
+Added mta-sts and startssl policy list info and links.</p>
+<p><em>Update September 2019</em>
+Added oneliner.</p>
+<p><em>Update September 2019</em>
+When I wrote this guide I had used Ubuntu 16.04 for testing. With Ubuntu 18.04 and Postfix, TLS 1.3 is also supported.</p>
+<p><em>Update September 2019</em>
+Added /rewrite Secure Client-Initiated Renegotiation.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://kruyt.org/tags/tls/">tls</a></li>
+      <li><a href="https://kruyt.org/tags/ssl/">ssl</a></li>
+      <li><a href="https://kruyt.org/tags/postfix/">postfix</a></li>
+      <li><a href="https://kruyt.org/tags/email/">email</a></li>
+      <li><a href="https://kruyt.org/tags/mail/">mail</a></li>
+      <li><a href="https://kruyt.org/tags/startssl/">startssl</a></li>
+      <li><a href="https://kruyt.org/tags/mta-sts/">mta-sts</a></li>
+      <li><a href="https://kruyt.org/tags/Renegotiation/">Renegotiation</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="https://kruyt.org/">Dennis Kruyt</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

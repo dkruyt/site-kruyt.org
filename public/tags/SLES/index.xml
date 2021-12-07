@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SLES on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/SLES/</link>
+    <description>Recent content in SLES on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Jan 2020 19:48:06 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/SLES/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SUSE SLES 15 Container in LXD</title>
+      <link>https://kruyt.org/suse-sles-15-container-in-lxd/</link>
+      <pubDate>Mon, 20 Jan 2020 19:48:06 +0000</pubDate>
+      
+      <guid>https://kruyt.org/suse-sles-15-container-in-lxd/</guid>
+      <description>I am a big fan of LXD and lot of my &amp;lsquo;home infra&amp;rsquo; and VPS&amp;rsquo;s are all running LXD container. Also I am using LXD at work to create test setup for al sorts of Linux OS&amp;rsquo;s and applications. Most &amp;ldquo;free&amp;rdquo; Linux OS&amp;rsquo;s are already in the LXD image repository. But sometime&amp;rsquo;s I need a non free Linux OS. Such as SUSE Linux Enterprise Server, or SLES for short. Off-course I can run this in a VPS just by installing it from an ISO.</description>
+    </item>
+    
+  </channel>
+</rss>

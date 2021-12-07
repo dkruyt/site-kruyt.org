@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>hetzner on Dennis Kruyt</title>
+    <link>https://kruyt.org/categories/hetzner/</link>
+    <description>Recent content in hetzner on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 19 Jul 2018 18:59:35 +0000</lastBuildDate><atom:link href="https://kruyt.org/categories/hetzner/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ScaleWay vs Hetzner</title>
+      <link>https://kruyt.org/scaleway-vs-hetzner/</link>
+      <pubDate>Thu, 19 Jul 2018 18:59:35 +0000</pubDate>
+      
+      <guid>https://kruyt.org/scaleway-vs-hetzner/</guid>
+      <description>I am looking for a new not so expensive VPS provider. When I was looking arround for something that would suit my needs I came up with ScaleWay and Hetzner as possible candidates.</description>
+    </item>
+    
+  </channel>
+</rss>

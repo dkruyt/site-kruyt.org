@@ -1,0 +1,1541 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/</link>
+    <description>Recent content in Tags on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Sep 2021 07:40:52 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>backup</title>
+      <link>https://kruyt.org/tags/backup/</link>
+      <pubDate>Wed, 29 Sep 2021 07:40:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/backup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>container</title>
+      <link>https://kruyt.org/tags/container/</link>
+      <pubDate>Wed, 29 Sep 2021 07:40:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/container/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kuberenetes</title>
+      <link>https://kruyt.org/tags/kuberenetes/</link>
+      <pubDate>Wed, 29 Sep 2021 07:40:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/kuberenetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rclone</title>
+      <link>https://kruyt.org/tags/rclone/</link>
+      <pubDate>Wed, 29 Sep 2021 07:40:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/rclone/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sidecar</title>
+      <link>https://kruyt.org/tags/sidecar/</link>
+      <pubDate>Wed, 29 Sep 2021 07:40:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/sidecar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>volume</title>
+      <link>https://kruyt.org/tags/volume/</link>
+      <pubDate>Wed, 29 Sep 2021 07:40:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/volume/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>1.20</title>
+      <link>https://kruyt.org/tags/1.20/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/1.20/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>1.22</title>
+      <link>https://kruyt.org/tags/1.22/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/1.22/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>containerd</title>
+      <link>https://kruyt.org/tags/containerd/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/containerd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cri</title>
+      <link>https://kruyt.org/tags/cri/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/cri/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>deprecated</title>
+      <link>https://kruyt.org/tags/deprecated/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/deprecated/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://kruyt.org/tags/docker/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dockershim</title>
+      <link>https://kruyt.org/tags/dockershim/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/dockershim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubelet</title>
+      <link>https://kruyt.org/tags/kubelet/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/kubelet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://kruyt.org/tags/kubernetes/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>migrate</title>
+      <link>https://kruyt.org/tags/migrate/</link>
+      <pubDate>Tue, 16 Mar 2021 21:17:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/migrate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>email</title>
+      <link>https://kruyt.org/tags/email/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/email/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ingress</title>
+      <link>https://kruyt.org/tags/ingress/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ingress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mail</title>
+      <link>https://kruyt.org/tags/mail/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/mail/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mx</title>
+      <link>https://kruyt.org/tags/mx/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/mx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postfix</title>
+      <link>https://kruyt.org/tags/postfix/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/postfix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxy</title>
+      <link>https://kruyt.org/tags/proxy/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>server</title>
+      <link>https://kruyt.org/tags/server/</link>
+      <pubDate>Mon, 19 Oct 2020 13:51:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cache</title>
+      <link>https://kruyt.org/tags/cache/</link>
+      <pubDate>Tue, 15 Sep 2020 18:50:45 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/cache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>varnish</title>
+      <link>https://kruyt.org/tags/varnish/</link>
+      <pubDate>Tue, 15 Sep 2020 18:50:45 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/varnish/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fortigate</title>
+      <link>https://kruyt.org/tags/fortigate/</link>
+      <pubDate>Sun, 21 Jun 2020 17:34:12 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/fortigate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fortinet</title>
+      <link>https://kruyt.org/tags/fortinet/</link>
+      <pubDate>Sun, 21 Jun 2020 17:34:12 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/fortinet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grafana</title>
+      <link>https://kruyt.org/tags/grafana/</link>
+      <pubDate>Sun, 21 Jun 2020 17:34:12 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redhat</title>
+      <link>https://kruyt.org/tags/redhat/</link>
+      <pubDate>Thu, 06 Feb 2020 18:16:23 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/redhat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RHCSA</title>
+      <link>https://kruyt.org/tags/RHCSA/</link>
+      <pubDate>Thu, 06 Feb 2020 18:16:23 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/RHCSA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lxd</title>
+      <link>https://kruyt.org/tags/lxd/</link>
+      <pubDate>Mon, 20 Jan 2020 19:48:06 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/lxd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SLES</title>
+      <link>https://kruyt.org/tags/SLES/</link>
+      <pubDate>Mon, 20 Jan 2020 19:48:06 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/SLES/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Suse</title>
+      <link>https://kruyt.org/tags/Suse/</link>
+      <pubDate>Mon, 20 Jan 2020 19:48:06 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Suse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ansible</title>
+      <link>https://kruyt.org/tags/ansible/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ansible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cd</title>
+      <link>https://kruyt.org/tags/cd/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/cd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ci</title>
+      <link>https://kruyt.org/tags/ci/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cicd</title>
+      <link>https://kruyt.org/tags/cicd/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/cicd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flow</title>
+      <link>https://kruyt.org/tags/flow/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/flow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://kruyt.org/tags/git/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gitlab</title>
+      <link>https://kruyt.org/tags/gitlab/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/gitlab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>merge</title>
+      <link>https://kruyt.org/tags/merge/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/merge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pipeline</title>
+      <link>https://kruyt.org/tags/pipeline/</link>
+      <pubDate>Fri, 17 Jan 2020 11:44:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/pipeline/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>3d</title>
+      <link>https://kruyt.org/tags/3d/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/3d/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ender</title>
+      <link>https://kruyt.org/tags/ender/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ender/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lamp</title>
+      <link>https://kruyt.org/tags/lamp/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/lamp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lampshade</title>
+      <link>https://kruyt.org/tags/lampshade/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/lampshade/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lightroom</title>
+      <link>https://kruyt.org/tags/lightroom/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/lightroom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>printing</title>
+      <link>https://kruyt.org/tags/printing/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/printing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shade</title>
+      <link>https://kruyt.org/tags/shade/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/shade/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>thingiverse</title>
+      <link>https://kruyt.org/tags/thingiverse/</link>
+      <pubDate>Mon, 09 Dec 2019 18:35:47 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/thingiverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>caching</title>
+      <link>https://kruyt.org/tags/caching/</link>
+      <pubDate>Sun, 06 Oct 2019 19:13:15 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/caching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ghost</title>
+      <link>https://kruyt.org/tags/ghost/</link>
+      <pubDate>Sun, 06 Oct 2019 19:13:15 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ghost/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>purge</title>
+      <link>https://kruyt.org/tags/purge/</link>
+      <pubDate>Sun, 06 Oct 2019 19:13:15 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/purge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>edgeos</title>
+      <link>https://kruyt.org/tags/edgeos/</link>
+      <pubDate>Fri, 27 Sep 2019 14:30:27 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/edgeos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>edgerouter</title>
+      <link>https://kruyt.org/tags/edgerouter/</link>
+      <pubDate>Fri, 27 Sep 2019 14:30:27 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/edgerouter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vyos</title>
+      <link>https://kruyt.org/tags/vyos/</link>
+      <pubDate>Fri, 27 Sep 2019 14:30:27 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/vyos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zerotier</title>
+      <link>https://kruyt.org/tags/zerotier/</link>
+      <pubDate>Fri, 27 Sep 2019 14:30:27 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/zerotier/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>disk</title>
+      <link>https://kruyt.org/tags/disk/</link>
+      <pubDate>Sun, 22 Sep 2019 18:22:49 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/disk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>harddisk</title>
+      <link>https://kruyt.org/tags/harddisk/</link>
+      <pubDate>Sun, 22 Sep 2019 18:22:49 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/harddisk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://kruyt.org/tags/linux/</link>
+      <pubDate>Sun, 22 Sep 2019 18:22:49 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>performance</title>
+      <link>https://kruyt.org/tags/performance/</link>
+      <pubDate>Sun, 22 Sep 2019 18:22:49 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tuning</title>
+      <link>https://kruyt.org/tags/tuning/</link>
+      <pubDate>Sun, 22 Sep 2019 18:22:49 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/tuning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>facebook</title>
+      <link>https://kruyt.org/tags/facebook/</link>
+      <pubDate>Fri, 13 Sep 2019 03:36:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/facebook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fail</title>
+      <link>https://kruyt.org/tags/fail/</link>
+      <pubDate>Fri, 13 Sep 2019 03:36:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/fail/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>helo</title>
+      <link>https://kruyt.org/tags/helo/</link>
+      <pubDate>Fri, 13 Sep 2019 03:36:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/helo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>instagram</title>
+      <link>https://kruyt.org/tags/instagram/</link>
+      <pubDate>Fri, 13 Sep 2019 03:36:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/instagram/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>smtp</title>
+      <link>https://kruyt.org/tags/smtp/</link>
+      <pubDate>Fri, 13 Sep 2019 03:36:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/smtp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SPF</title>
+      <link>https://kruyt.org/tags/SPF/</link>
+      <pubDate>Fri, 13 Sep 2019 03:36:21 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/SPF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>network</title>
+      <link>https://kruyt.org/tags/network/</link>
+      <pubDate>Sat, 31 Aug 2019 17:36:31 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>networking</title>
+      <link>https://kruyt.org/tags/networking/</link>
+      <pubDate>Sat, 31 Aug 2019 17:36:31 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sdwan</title>
+      <link>https://kruyt.org/tags/sdwan/</link>
+      <pubDate>Sat, 31 Aug 2019 17:36:31 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/sdwan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubiquiti</title>
+      <link>https://kruyt.org/tags/Ubiquiti/</link>
+      <pubDate>Sat, 31 Aug 2019 17:36:31 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Ubiquiti/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bbq</title>
+      <link>https://kruyt.org/tags/bbq/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/bbq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>beef</title>
+      <link>https://kruyt.org/tags/beef/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/beef/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>belly</title>
+      <link>https://kruyt.org/tags/belly/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/belly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chiken</title>
+      <link>https://kruyt.org/tags/chiken/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/chiken/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kamado</title>
+      <link>https://kruyt.org/tags/Kamado/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Kamado/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Meat</title>
+      <link>https://kruyt.org/tags/Meat/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Meat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pichana</title>
+      <link>https://kruyt.org/tags/pichana/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/pichana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pork</title>
+      <link>https://kruyt.org/tags/pork/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/pork/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>smoked</title>
+      <link>https://kruyt.org/tags/smoked/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/smoked/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tandoor</title>
+      <link>https://kruyt.org/tags/tandoor/</link>
+      <pubDate>Tue, 27 Aug 2019 05:56:03 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/tandoor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fortiadc</title>
+      <link>https://kruyt.org/tags/fortiadc/</link>
+      <pubDate>Wed, 21 Aug 2019 06:44:10 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/fortiadc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>influxdb</title>
+      <link>https://kruyt.org/tags/influxdb/</link>
+      <pubDate>Wed, 21 Aug 2019 06:44:10 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/influxdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>loadbalancer</title>
+      <link>https://kruyt.org/tags/loadbalancer/</link>
+      <pubDate>Wed, 21 Aug 2019 06:44:10 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/loadbalancer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>telegraf</title>
+      <link>https://kruyt.org/tags/telegraf/</link>
+      <pubDate>Wed, 21 Aug 2019 06:44:10 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/telegraf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arris</title>
+      <link>https://kruyt.org/tags/arris/</link>
+      <pubDate>Fri, 16 Aug 2019 14:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/arris/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cable</title>
+      <link>https://kruyt.org/tags/cable/</link>
+      <pubDate>Fri, 16 Aug 2019 14:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/cable/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>connectbox</title>
+      <link>https://kruyt.org/tags/connectbox/</link>
+      <pubDate>Fri, 16 Aug 2019 14:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/connectbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docsis</title>
+      <link>https://kruyt.org/tags/docsis/</link>
+      <pubDate>Fri, 16 Aug 2019 14:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/docsis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>modem</title>
+      <link>https://kruyt.org/tags/modem/</link>
+      <pubDate>Fri, 16 Aug 2019 14:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/modem/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>statistics</title>
+      <link>https://kruyt.org/tags/statistics/</link>
+      <pubDate>Fri, 16 Aug 2019 14:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ziggo</title>
+      <link>https://kruyt.org/tags/ziggo/</link>
+      <pubDate>Fri, 16 Aug 2019 14:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ziggo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Balls</title>
+      <link>https://kruyt.org/tags/Balls/</link>
+      <pubDate>Thu, 15 Aug 2019 13:26:12 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Balls/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>food</title>
+      <link>https://kruyt.org/tags/food/</link>
+      <pubDate>Thu, 15 Aug 2019 13:26:12 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/food/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>alert</title>
+      <link>https://kruyt.org/tags/alert/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/alert/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>https://kruyt.org/tags/bash/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dark</title>
+      <link>https://kruyt.org/tags/dark/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/dark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>monitoring</title>
+      <link>https://kruyt.org/tags/monitoring/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>notification</title>
+      <link>https://kruyt.org/tags/notification/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/notification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pushover</title>
+      <link>https://kruyt.org/tags/pushover/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/pushover/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>theme</title>
+      <link>https://kruyt.org/tags/theme/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/theme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zabbix</title>
+      <link>https://kruyt.org/tags/zabbix/</link>
+      <pubDate>Tue, 14 May 2019 16:45:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/zabbix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ginlong</title>
+      <link>https://kruyt.org/tags/ginlong/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ginlong/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mqtt</title>
+      <link>https://kruyt.org/tags/mqtt/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/mqtt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Omnik</title>
+      <link>https://kruyt.org/tags/Omnik/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Omnik/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pv</title>
+      <link>https://kruyt.org/tags/pv/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/pv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pvoutput</title>
+      <link>https://kruyt.org/tags/pvoutput/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/pvoutput/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://kruyt.org/tags/python/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>solar</title>
+      <link>https://kruyt.org/tags/solar/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/solar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Solarman</title>
+      <link>https://kruyt.org/tags/Solarman/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Solarman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>solis</title>
+      <link>https://kruyt.org/tags/solis/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/solis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Trannergy</title>
+      <link>https://kruyt.org/tags/Trannergy/</link>
+      <pubDate>Mon, 13 May 2019 19:07:58 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Trannergy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>10.14</title>
+      <link>https://kruyt.org/tags/10.14/</link>
+      <pubDate>Thu, 06 Sep 2018 17:35:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/10.14/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>darksome</title>
+      <link>https://kruyt.org/tags/darksome/</link>
+      <pubDate>Thu, 06 Sep 2018 17:35:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/darksome/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://kruyt.org/tags/macos/</link>
+      <pubDate>Thu, 06 Sep 2018 17:35:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mojave</title>
+      <link>https://kruyt.org/tags/mojave/</link>
+      <pubDate>Thu, 06 Sep 2018 17:35:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/mojave/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xcode</title>
+      <link>https://kruyt.org/tags/xcode/</link>
+      <pubDate>Thu, 06 Sep 2018 17:35:54 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/xcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>compare</title>
+      <link>https://kruyt.org/tags/compare/</link>
+      <pubDate>Thu, 19 Jul 2018 18:59:35 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/compare/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hetzner</title>
+      <link>https://kruyt.org/tags/hetzner/</link>
+      <pubDate>Thu, 19 Jul 2018 18:59:35 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/hetzner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scaleway</title>
+      <link>https://kruyt.org/tags/scaleway/</link>
+      <pubDate>Thu, 19 Jul 2018 18:59:35 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/scaleway/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>https://kruyt.org/tags/test/</link>
+      <pubDate>Thu, 19 Jul 2018 18:59:35 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VPS</title>
+      <link>https://kruyt.org/tags/VPS/</link>
+      <pubDate>Thu, 19 Jul 2018 18:59:35 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/VPS/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>etag</title>
+      <link>https://kruyt.org/tags/etag/</link>
+      <pubDate>Fri, 29 Jun 2018 18:28:29 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/etag/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>header</title>
+      <link>https://kruyt.org/tags/header/</link>
+      <pubDate>Fri, 29 Jun 2018 18:28:29 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/header/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>https://kruyt.org/tags/nginx/</link>
+      <pubDate>Fri, 29 Jun 2018 18:28:29 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>https://kruyt.org/tags/web/</link>
+      <pubDate>Fri, 29 Jun 2018 18:28:29 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FAT</title>
+      <link>https://kruyt.org/tags/FAT/</link>
+      <pubDate>Thu, 11 Jan 2018 22:20:20 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/FAT/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>huawei</title>
+      <link>https://kruyt.org/tags/huawei/</link>
+      <pubDate>Thu, 11 Jan 2018 22:20:20 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/huawei/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wlan</title>
+      <link>https://kruyt.org/tags/wlan/</link>
+      <pubDate>Thu, 11 Jan 2018 22:20:20 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/wlan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dorado</title>
+      <link>https://kruyt.org/tags/dorado/</link>
+      <pubDate>Thu, 11 Jan 2018 21:51:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/dorado/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metrics</title>
+      <link>https://kruyt.org/tags/metrics/</link>
+      <pubDate>Thu, 11 Jan 2018 21:51:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/metrics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>storage</title>
+      <link>https://kruyt.org/tags/storage/</link>
+      <pubDate>Thu, 11 Jan 2018 21:51:48 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/storage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lizardfs</title>
+      <link>https://kruyt.org/tags/lizardfs/</link>
+      <pubDate>Mon, 14 Aug 2017 19:59:32 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/lizardfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mta-sts</title>
+      <link>https://kruyt.org/tags/mta-sts/</link>
+      <pubDate>Fri, 04 Aug 2017 19:05:26 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/mta-sts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Renegotiation</title>
+      <link>https://kruyt.org/tags/Renegotiation/</link>
+      <pubDate>Fri, 04 Aug 2017 19:05:26 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Renegotiation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssl</title>
+      <link>https://kruyt.org/tags/ssl/</link>
+      <pubDate>Fri, 04 Aug 2017 19:05:26 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>startssl</title>
+      <link>https://kruyt.org/tags/startssl/</link>
+      <pubDate>Fri, 04 Aug 2017 19:05:26 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/startssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tls</title>
+      <link>https://kruyt.org/tags/tls/</link>
+      <pubDate>Fri, 04 Aug 2017 19:05:26 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/tls/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>barnyard2</title>
+      <link>https://kruyt.org/tags/barnyard2/</link>
+      <pubDate>Mon, 24 Jul 2017 19:33:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/barnyard2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ids</title>
+      <link>https://kruyt.org/tags/ids/</link>
+      <pubDate>Mon, 24 Jul 2017 19:33:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ids/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>https://kruyt.org/tags/mysql/</link>
+      <pubDate>Mon, 24 Jul 2017 19:33:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>snort</title>
+      <link>https://kruyt.org/tags/snort/</link>
+      <pubDate>Mon, 24 Jul 2017 19:33:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/snort/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>snmp</title>
+      <link>https://kruyt.org/tags/snmp/</link>
+      <pubDate>Sat, 22 Jul 2017 19:27:02 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/snmp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zswap</title>
+      <link>https://kruyt.org/tags/zswap/</link>
+      <pubDate>Wed, 19 Jul 2017 20:04:51 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/zswap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arduino</title>
+      <link>https://kruyt.org/tags/arduino/</link>
+      <pubDate>Sat, 24 Mar 2012 20:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/arduino/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>drive</title>
+      <link>https://kruyt.org/tags/drive/</link>
+      <pubDate>Sat, 24 Mar 2012 20:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/drive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>floppy</title>
+      <link>https://kruyt.org/tags/floppy/</link>
+      <pubDate>Sat, 24 Mar 2012 20:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/floppy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>starwars</title>
+      <link>https://kruyt.org/tags/starwars/</link>
+      <pubDate>Sat, 24 Mar 2012 20:53:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/starwars/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>clock</title>
+      <link>https://kruyt.org/tags/clock/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/clock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ds1307</title>
+      <link>https://kruyt.org/tags/ds1307/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/ds1307/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Equilux</title>
+      <link>https://kruyt.org/tags/Equilux/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/Equilux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hack42</title>
+      <link>https://kruyt.org/tags/hack42/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/hack42/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>led</title>
+      <link>https://kruyt.org/tags/led/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/led/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rgb</title>
+      <link>https://kruyt.org/tags/rgb/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/rgb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shield</title>
+      <link>https://kruyt.org/tags/shield/</link>
+      <pubDate>Fri, 17 Jun 2011 21:03:46 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/shield/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cards</title>
+      <link>https://kruyt.org/tags/cards/</link>
+      <pubDate>Sat, 03 Jul 2010 17:52:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/cards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>magnetic</title>
+      <link>https://kruyt.org/tags/magnetic/</link>
+      <pubDate>Sat, 03 Jul 2010 17:52:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/magnetic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reader</title>
+      <link>https://kruyt.org/tags/reader/</link>
+      <pubDate>Sat, 03 Jul 2010 17:52:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/reader/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>atom</title>
+      <link>https://kruyt.org/tags/atom/</link>
+      <pubDate>Tue, 28 Apr 2009 14:35:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/atom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://kruyt.org/tags/blog/</link>
+      <pubDate>Tue, 28 Apr 2009 14:35:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>inlinefeed</title>
+      <link>https://kruyt.org/tags/inlinefeed/</link>
+      <pubDate>Tue, 28 Apr 2009 14:35:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/inlinefeed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rss</title>
+      <link>https://kruyt.org/tags/rss/</link>
+      <pubDate>Tue, 28 Apr 2009 14:35:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/rss/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wordpress</title>
+      <link>https://kruyt.org/tags/wordpress/</link>
+      <pubDate>Tue, 28 Apr 2009 14:35:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/wordpress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flickr</title>
+      <link>https://kruyt.org/tags/flickr/</link>
+      <pubDate>Fri, 24 Apr 2009 14:24:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/flickr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flickramio</title>
+      <link>https://kruyt.org/tags/flickramio/</link>
+      <pubDate>Fri, 24 Apr 2009 14:24:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/flickramio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geotag</title>
+      <link>https://kruyt.org/tags/geotag/</link>
+      <pubDate>Fri, 24 Apr 2009 14:24:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/geotag/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geotagged</title>
+      <link>https://kruyt.org/tags/geotagged/</link>
+      <pubDate>Fri, 24 Apr 2009 14:24:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/geotagged/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gps</title>
+      <link>https://kruyt.org/tags/gps/</link>
+      <pubDate>Fri, 24 Apr 2009 14:24:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/gps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grease monkey</title>
+      <link>https://kruyt.org/tags/grease-monkey/</link>
+      <pubDate>Fri, 24 Apr 2009 14:24:00 +0000</pubDate>
+      
+      <guid>https://kruyt.org/tags/grease-monkey/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

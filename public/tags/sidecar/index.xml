@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>sidecar on Dennis Kruyt</title>
+    <link>https://kruyt.org/tags/sidecar/</link>
+    <description>Recent content in sidecar on Dennis Kruyt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Sep 2021 07:40:52 +0000</lastBuildDate><atom:link href="https://kruyt.org/tags/sidecar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes SideCar Backup</title>
+      <link>https://kruyt.org/kubernetes-sidecar-backup/</link>
+      <pubDate>Wed, 29 Sep 2021 07:40:52 +0000</pubDate>
+      
+      <guid>https://kruyt.org/kubernetes-sidecar-backup/</guid>
+      <description>kscb is a sidecar container, that is based upon rclone with a crontab. The sidecar container in the pod has access to the PV mount and the data on it, Rclone can then easily copy/sync to a public/private storage provider</description>
+    </item>
+    
+  </channel>
+</rss>
