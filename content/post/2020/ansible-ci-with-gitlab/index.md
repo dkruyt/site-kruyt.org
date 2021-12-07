@@ -53,8 +53,7 @@ Below a breakdown of of this _yaml_ file. On my system it will spin up a Kuberne
 First we need a _before_script_ which will be executed by the GitLab runner at the start. We will use a local Docker image that has the environment for Ansible. This already has installed _python,_  _ansible_ and _ansible-lint_. Also we will put the private SSH key here. This key is defined as a variable in GitLab so this key is **not** in the git repository.
 
 ```yaml
-cover:
-  image: localhost:5000/ubuntu_ansible
+image: localhost:5000/ubuntu_ansible
 
 before_script:
   - whoami

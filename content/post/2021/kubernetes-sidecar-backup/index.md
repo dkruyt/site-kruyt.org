@@ -8,13 +8,10 @@ categories:
 - container
 - rclone
 cover:
-cover:
   image: /images/2021/09/CE-Cheap-Vespa-Motor-Tricycle-Adult-Tricycle-Scooter-3-Wheel-Scooter.webp
 date: "2021-09-29T07:40:52Z"
 description: ""
 draft: false
-cover:
-  image: /images/2021/09/CE-Cheap-Vespa-Motor-Tricycle-Adult-Tricycle-Scooter-3-Wheel-Scooter.webp
 slug: kubernetes-sidecar-backup
 summary: kscb is a sidecar container, that is based upon rclone with a crontab. The
   sidecar container in the pod has access to the PV mount and the data on it, Rclone
