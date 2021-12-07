@@ -1,0 +1,36 @@
+---
+baseURL: 'https://kruyt.org/'
+disablePathToLower: true
+languageCode: en-us
+title: kruyt.org
+theme: hugo-papermod
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+permalinks:
+  post: '/:filename/'
+  code: '/:filename/'
+params:
+  homeInfoParams:
+    Title:
+    #Content: Can be Info, links, about...
+
+  socialIcons: # optional
+    - name: "GitHub"
+      url: "https://github.com/dkruyt/"
+    - name: "LinkedIn"
+      url: "https://www.linkedin.com/in/denniskruyt/"
+    - name: "Twitter"
+      url: "https://twitter.com/denniskruyt"
+    - name: "Instagram"
+      url: "https://www.instagram.com/denniskruyt/"
+    - name: "YouTube"
+      url: " https://www.youtube.com/channel/UCsXi28WoYirGzkvP_tUhs8A"
+    - name: "Flickr"
+      url: "https://www.flickr.com/people/phantagom/"
+
+  editPost:
+    URL: "https://github.com/dkruyt/site-kruyt.org/blob/main/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
