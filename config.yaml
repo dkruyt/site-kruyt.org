@@ -14,8 +14,7 @@ permalinks:
   post: '/:filename/'
   code: '/:filename/'
 params:
-  homeInfoParams:
-    env: production
+  env: production
 
   socialIcons: # optional
     - name: "GitHub"
