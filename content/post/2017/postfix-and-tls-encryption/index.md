@@ -34,7 +34,7 @@ Of course you can use S/MIME or PGP and have end to end encryption, but the prob
 
 In this post I will show how I setup a smtp server running Postfix with TLS encryption and with the correct cyphers. So that email between smtp servers where possible is using strong email encryption.   
  
-###### Postfix mail daemon
+## Postfix mail daemon
 
 First you need to know that postfix has separate mail daemons for handling different flow of mail. And each daemon is configured separately. So it is possible to accept weak ciphers but you only use strong ciphers when delivering mail to the out side.
 
@@ -44,7 +44,7 @@ The two that are responsible for handling mail in and out from the world are:
 
 **smtp** - The SMTP daemon process for delivering mail out to the world.
 
-###### Default config test
+### Default config test
 
 Lets see first how good this default config is for incoming mail to the **smtpd** daemon. Normally I would test it with [SSLLABS](https://ssllabs.com) sadly this only can check _https_ can't check smtp/STARTTLS. A alternative is [immuniweb](https://www.immuniweb.com/ssl/) but we will use this later. There is also a shellscript self hosted tool on https://testssl.sh/ which can check your SSL/TLS settings and vulnerabilities of your mail server. 
 
@@ -60,7 +60,7 @@ Below is a summery of the issues with the default postfix config on Ubuntu 16.04
 
 Lets see how we can fix these issues.
 
-###### Trusted certificate
+### Trusted certificate
 
 While it is not mandatory for mailserver to have a trusted certificate, now a day's it is easy and free to get one from LetsEncrypt. So request one and use it for Postfix. Make sure you use the *fullchain*, so that intermediates in the chain are also sent.  
 
@@ -75,7 +75,7 @@ What about a client certificate for the _smtp_ daemon? For this the readme from 
 
 > Do not configure Postfix SMTP client certificates unless you must present client TLS certificates to one or more servers. Client certificates are not usually needed, and can cause problems in configurations that work well without them. The recommended setting is to let the defaults stand:
 
-###### Disable SSL,TLSv1
+### Disable SSL,TLSv1
 After that we disable all SSL and TLSv1, allow only high ciphers for both **smtp** and **smtpd**. This will mitigate BEAST. And allow **only** high ciphers. And we want to negotiate the strongest available cipher available with the remote server.
 
 ```bash
@@ -88,7 +88,7 @@ smtp_tls_mandatory_protocols = TLSv1.2, TLSv1.1, !TLSv1, !SSLv2, !SSLv3
 smtp_tls_mandatory_ciphers = high
 smtpd_tls_mandatory_ciphers = high
 ```
-######Disable deprecated ciphers
+###Disable deprecated ciphers
 And exclude some deprecated not so secure ciphers.
 
 ```bash
@@ -99,7 +99,7 @@ smtp_tls_exclude_ciphers = MD5, DES, ADH, RC4, PSD, SRP, 3DES, eNULL, aNULL
 tls_preempt_cipherlist = yes
 ```
 
-######Use opportunistic encryption 
+###Use opportunistic encryption 
 With mailserver we want to use _opportunistic_ encryption. We don't force encryption, If we do so this sounds secure but not all other mail servers supports encryption. So worse case scenario you will not receive from some other mail servers or be able to sent to some other mail server that dont support TLS. 
 
 This is also stated in RFC2487
@@ -127,7 +127,7 @@ With these settings we are still susceptible for a downgrade attack. This becaus
 
 There are some options coming to solve these issues. Like [mta-sts](https://datatracker.ietf.org/doc/draft-ietf-uta-mta-sts/) or a [startssl policy list](https://starttls-everywhere.org/). But these are still very new and not broadly supported yet (June 2018). Maybe an other time I make a post about these.
 
-###### Secure Client-Initiated Renegotiation
+### Secure Client-Initiated Renegotiation
 
 On a Ubuntu 16.04 with postfix version 3.1.0-3ubuntu0.3 and openssl version 1.0.2g-1ubuntu4.15 you can't solve this issue.
 
@@ -152,11 +152,11 @@ And in [postfix 3.4](http://www.postfix.org/postconf.5.html) you can set it also
 tls_ssl_options = NO_RENEGOTIATION
 ```
 
-###### Test new config
+## Test new config
 
 After these settings, and you restart postfix and check again with `testssl.sh`, all issue's reported earlier are gone. Wit maybe the eception of the enegotiation issue depending of you postfix/openssl version.  
 
-###### immuniweb
+### immuniweb
 
 An other tool you can test online with is from https://www.immuniweb.com/ssl/ these can also check mailservers, make sure you use `:25` at the end of your hostname. With the above SSL/TLS settings for postfix you get an A or an A+, depending on your postfix and openssl version. If you are using this site, make sure to hit refresh after you changed your postfix config or else you will get cached results.
 
@@ -166,7 +166,7 @@ immuniweb will give the following warning. This is due to the fact that postfix 
 
 `SERVER DOES NOT SUPPORT OCSP STAPLING`
 
-###### Check the logs / headers if it is working
+### Check the logs / headers if it is working
 How do I know when mail is delivered over TLS, you can ook in the 
  mail logs. But before this is logged, you need to enable the tls log level.
 
@@ -267,7 +267,7 @@ dennis@mailserver:/var/log> grep "TLS connection established" mail.log egrep -v 
 
 After implementing these settings, your mailserver will exchange emails with other email server using high 'secure' encryption if possible.
 
-###### Changelog
+## Changelog
 
 *Update June 2018*
 Added mta-sts and startssl policy list info and links. 
