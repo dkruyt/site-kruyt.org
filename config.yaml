@@ -4,6 +4,8 @@ disablePathToLower: true
 languageCode: en-us
 title: kruyt.org
 theme: hugo-papermod
+googleAnalytics: UA-511580-16
+disqusShortname: blogkruytorg
 markup:
   goldmark:
     renderer:
@@ -13,8 +15,7 @@ permalinks:
   code: '/:filename/'
 params:
   homeInfoParams:
-    Title:
-    #Content: Can be Info, links, about...
+    env: production
 
   socialIcons: # optional
     - name: "GitHub"
