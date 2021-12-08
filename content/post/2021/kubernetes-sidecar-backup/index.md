@@ -33,7 +33,7 @@ When you run containers in Kubernetes, you can have also persistent data in thos
 
 That's why I created a sidecar container named kscb, that is based upon [rclone](https://rclone.org/) with a crontab. The sidecar container in the pod has access to the PV mount and the data on it, we can mount it read only, so no danger there. Rclone can then easily copy/sync to a public/private storage provider, just take a look at the [supported provider](https://rclone.org/#providers) list on the rclone site.
 
-{{< bookmark url="https://github.com/dkruyt/kscb" title="GitHub - dkruyt/kscb: kscb is a sidecar container, that is based upon rclone with a crontab. The sidecar container in the pod has access to the PV mount and the data on it, we can mount it read only, so no danger there. Rclone can then easily copy/sync to a public/private storage provider" description="kscb is a sidecar container, that is based upon rclone with a crontab. The sidecar container in the pod has access to the PV mount and the data on it, we can mount it read only, so no danger there...." author="dkruyt" publisher="GitHub" thumbnail="https://opengraph.githubassets.com/22da4133c352819969e8aa7102acf052870d592371d068817a1fdb23dee5bb67/dkruyt/kscb" caption="" >}}
+{{< bookmark url="https://github.com/dkruyt/kscb" thumbnail="https://opengraph.githubassets.com/22da4133c352819969e8aa7102acf052870d592371d068817a1fdb23dee5bb67/dkruyt/kscb" caption="" >}}
 
 The container is very light weight, it is only running the busybox crontab, so it will use only about 1-2 mb of memory when not running rclone backups.
 

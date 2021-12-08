@@ -32,9 +32,9 @@ title: Migrate from Docker to Containerd in Kubernetes
 ---
 
 
-Kubernetes is [deprecating Docker](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation) as a container runtime after v1.20. Don't Panic 😱 Docker containers are still supported, but the dockershim/Docker, the layer between Kubernetes and containerd  is deprecated and will be removed from version 1.22+.
+Kubernetes is [deprecating Docker](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation) as a container runtime after v1.20. Don't Panic 😱 Docker containers are still supported, but the dockershim/Docker, the layer between Kubernetes and containerd is deprecated and will be removed from version 1.22+.
 
-{{< bookmark url="https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/" title="Don’t Panic: Kubernetes and Docker" description="Authors: Jorge Castro, Duffie Cooley, Kat Cosgrove, Justin Garrison, Noah Kantrowitz, Bob Killen, Rey Lejano, Dan “POP” Papandrea, Jeffrey Sica, Davanum “Dims” Srinivas\nKubernetes is deprecating Docker as a container runtime after v1.20.\nYou do not need to panic. It’s not as dramatic as it sounds.\nT…" icon="https://kubernetes.io/favicons/apple-touch-icon-180x180.png" author="Wednesday, December 02, 2020" publisher="Kubernetes" thumbnail="https://kubernetes.io/images/favicon.png" caption="" >}}
+https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/"
 
 So if you are running docker you need to change to a supported container runtime interface (CRI). containerd is a good choice, it is already running on your Kubernetes node if you are running Docker.
 
