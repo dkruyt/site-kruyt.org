@@ -9,7 +9,7 @@ date: 2019-09-24T03:36:00.000Z
 description: ''
 draft: false
 cover:
-  image: /content/images/2019/10/photo-1532393950032-b666e39c29b3.jpeg
+  image: /images/2019/10/photo-1532393950032-b666e39c29b3.jpeg
 slug: mysql-tuning
 summary: >-
   At my work in the past I needed to trouble shoot and tune MySQL installations.
