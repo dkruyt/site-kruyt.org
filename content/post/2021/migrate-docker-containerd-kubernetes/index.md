@@ -15,7 +15,7 @@ date: "2021-03-16T21:17:54Z"
 description: ""
 draft: false
 cover:
-  image: /images/2021/03/mvii.jpeg
+  image: /images/2021/03/mvii.webp
 slug: migrate-docker-containerd-kubernetes
 tags:
 - kubernetes

@@ -8,7 +8,7 @@ date: "2020-06-21T17:34:12Z"
 description: ""
 draft: false
 cover:
-  image: /images/2020/09/gate-4060998_1280--1-.jpg
+  image: /images/2020/09/gate-4060998_1280--1-.webp
 slug: fortigate_grafana
 tags:
 - fortigate
