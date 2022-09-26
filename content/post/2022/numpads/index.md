@@ -1,7 +1,7 @@
 ---
 title: "Numpads"
 date: 2022-09-25T21:15:15+02:00
-draft: true
+draft: false
 author: Dennis Kruyt
 categories:
 - keyboards
