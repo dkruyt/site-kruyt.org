@@ -41,7 +41,7 @@ Before diving into the Node-RED script, let's understand the components of our s
 
 The Node-RED script acts as the brain of my smart charging system. It processes the data from the DSMR Reader and communicates with the Home Assistant and via ModBus to control the Alfen charger based on the current load of my home's power connection.
 
-{{< figure src="/images/2023/ev-nodered.png" caption="nodered" >}}
+{{< figure src="/images/2023/ev-nodered.png" link="/images/2023/ev-nodered.png" caption="nodered overview" >}}
 
 ### Analyzing the Script
 
