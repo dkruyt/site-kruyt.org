@@ -18,7 +18,7 @@ tags:
 title: Building mechanical numpads
 ---
 
-I am always fascinated about mechanical keyboards. And a couple of weeks ago I had some spare time left. So I thought lets make my own keyboard from scratch from stuff that I had laying around en my 3d printer. Well maybe a full keyboard is to big, so let's start with something smaller. Why not a numpad, that goes along with my 65% keyboard?
+Mechanical keyboards have always fascinated me. A few weeks ago, with some spare time on my hands, I decided to embark on a project to build my own keyboard from scratch using materials I had lying around and my 3D printer. Considering a full keyboard might be too ambitious for a starter project, I opted for something smaller: a numpad, the perfect complement to my 65% keyboard.
 
 The end result are 2 numpad, yhea could stop with one ;) One numpad with a function row and RGB underglow. And a bigger numpad wit 2 function rows and a OLED display.  
 
@@ -27,7 +27,7 @@ The end result are 2 numpad, yhea could stop with one ;) One numpad with a funct
 
 ### 3D design
 
-I started with looking around for existing 3d designs. I found one one tinkercad from FedorSosin. I remix the top plate to add function rows and a place for a oled display. This I did in tinkercad. The bottom/base part is a new design that also will fit a Raspberry Pico Pi. For the RGB one I sliced in a extra layer that I printed with transparent PLA and glued it to the top plate.
+My design process began with searching for existing 3D designs. I found a suitable one on Tinkercad by FedorSosin and modified the top plate to accommodate function rows and a slot for an OLED display. The base part was a new design made to fit a Raspberry Pi Pico clone. For the RGB model, I added an extra layer printed with transparent PLA, which I then glued to the top plate.
 
 [Download STL files](/files/numpads.zip "download")
 
@@ -37,21 +37,22 @@ I started with looking around for existing 3d designs. I found one one tinkercad
 {{< figure src="/images/2022/09/3dprinter.jpg" caption="3D printing in action" >}}
 
 ### Components
-BOM of stuff that I used (had laying around) to create these numpads.
+Here's a BOM (Bill of Materials) for the numpads, using components I already had:
+
 - Gateron brown switches
-- RP2040, Pico Pi clone with USBC
+- RP2040 (Pico Pi clone with USB-C)
 - 0.96 inch OLED Display 128*x64
 - WS2812 RGB LED strip
 - PLA black and transparent (for RGB galore)
 - Diodes 1n4148
 - 5mm LED's
 - 470 Ohm resistors for the LED's
-- Shrinking tube
-- Random wiring
+- Heat shrink tubing
+- Miscellaneous wiring
 
-### Handwire
+### Handwiring
 
-I handwired the switches, not the best soldering job, but for a prototype it's working fine. handwiring can look daunting, but when you are into it, it's pretty easy. 
+I handwired the switches. While not the neatest soldering job, it works perfectly fine for a prototype. Handwiring might seem daunting at first, but it becomes straightforward once you get the hang of it.
 
 {{< figure src="/images/2022/09/wiring-oled.jpg" caption="Wiring OLED" >}}
 
@@ -61,17 +62,18 @@ I handwired the switches, not the best soldering job, but for a prototype it's w
 
 {{< figure src="https://qmk.fm/assets/images/badge-dark.png#center" height="100" >}}
 
-The RP2040 is now supported in QMK firmware. KMK should also work, but with KMK I could get the OLED display to work. So I used QMK with VIA support.
+The RP2040 is now supported by QMK firmware. While KMK is an option, I couldn't get the OLED display to work with it, so I opted for QMK with VIA support. 
 
 You can find the QMK files on my [Github page](https://github.com/dkruyt/qmk_firmware/tree/phantagom-pads/keyboards/phantagom). 
 
-I am using also layer support, the keypad also doubles as a mouse, navigations and macro's. The oled gives info about the lock status and which layer I am on.
+The keypad supports multiple layers, functioning also as a mouse, for navigation, and macros. The OLED display provides information about lock status and the active layer.
+
 
 {{< figure src="/images/2022/09/oled-display.jpg#center" height="260" caption="OLED Display" >}}
 
 ### Desktop
 
-Now I have a companion for my 65% keyboard.
-
+ now have the perfect companion for my 65% keyboard, enhancing my desktop setup significantly.
+ 
 {{< figure src="/images/2022/09/gammaykay-mpad.jpg" caption="65% keyboard and the macro numpad" >}}
 
