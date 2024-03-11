@@ -20,6 +20,10 @@ I still remember the day I got Command and Conquer Red Alert as a birthday gift.
 
 {{< bookmark url="https://github.com/dkruyt/openra" thumbnail="https://opengraph.githubassets.com/22da4133c352819969e8aa7102acf052870d592371d068817a1fdb23dee5bb67/dkruyt/openra" caption="" >}}
 
+<p>
+<a href="https://github.com/dkruyt/openra/actions/workflows/main.yml" target="_blank"><img src="https://github.com/dkruyt/openra/actions/workflows/main.yml/badge.svg"></a><a href="https://github.com/dkruyt/openra/pkgs/container/openra" target="_blank"><img src="https://ghcr-badge.egpl.dev/dkruyt/openra/latest_tag?trim=major&label=latest"><img src="https://ghcr-badge.egpl.dev/dkruyt/openra/size"></a>
+</p>
+
 ## Technical Details 
 
 I began by setting up a Dockerfile. This file is like a recipe that tells Docker how to build my image, including all the instructions and requirements. Once I had my Dockerfile ready, I set up GitHub Actions to run a check every day for new OpenRA releases. If a new release is detected, GitHub Actions automatically builds and pushes a new Docker image. It's like having an assistant who does all the work. And it even lets me trigger the workflow manually if I want to.
