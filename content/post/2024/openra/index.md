@@ -30,7 +30,7 @@ What I like about Docker Compose is that it allows you to change game settings w
 
 Here's a diagram that shows the steps in of the GitHub Actions workflow that wil make sure always in 24 hourse of a new release there is a new docker contianer:
 
-![Workflow Diagram](/images/2024/eopenra-flow.svg)
+![Workflow Diagram](/images/2024/openra-flow.svg)
 
 If there's no new OpenRA release, the workflow stops there. But if a new release is detected, it logs into the GitHub Container Registry, sets up Docker Buildx, and then builds and pushes the Docker image. Once all that is done, it wraps things up by updating and committing the new version. And there you have it, a fresh and updated OpenRA game ready to go!
 
