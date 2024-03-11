@@ -7,7 +7,7 @@ categories:
 - automation
 - games
 cover:
-  image: /images/2024/eopenra-banner.jpg
+  image: /images/2024/openra-banner.png
 slug: openra-docker
 tags:
 - automation
@@ -18,7 +18,7 @@ tags:
 
 I still remember the day I got Command and Conquer Red Alert as a birthday gift. I've spent too many hours to count playing this game over the years. These days, I still enjoy it from time to time, teaming up with my son or work buddies for a match. Today, thanks to OpenRA, an open-source version of Red Alert is available, not to mention Dune and Tiberian Sun. We usually play these games online, which is why I run them on my ARM-based server. But there's always been one issue: there are no decent Docker images available for OpenRA. Some are outdated; others aren't compatible with ARM architecture. So, I decided it was time to sort this out. I created a Docker build file and a Docker compose file that syncs with GitHub Actions. This setup helps me keep an eye on new OpenRA releases and auto-builds them. Whenever a new update is released, I can just pull a new Docker image onto my server. It's as simple as that!
 
-[Github page](https://github.com/dkruyt/openra)
+{{< bookmark url="https://github.com/dkruyt/openra" thumbnail="https://opengraph.githubassets.com/22da4133c352819969e8aa7102acf052870d592371d068817a1fdb23dee5bb67/dkruyt/openra" caption="" >}}
 
 ## Technical Details 
 
