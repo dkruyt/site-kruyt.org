@@ -18,7 +18,7 @@ I still remember the day I got Command and Conquer Red Alert as a birthday gift.
 
 {{< bookmark url="https://github.com/dkruyt/openra" thumbnail="https://opengraph.githubassets.com/22da4133c352819969e8aa7102acf052870d592371d068817a1fdb23dee5bb67/dkruyt/openra" caption="" >}}
 
-[![Check for new OpenRA release and build docker image](https://github.com/dkruyt/openra/actions/workflows/main.yml/badge.svg)](ht
+[![Check for new OpenRA release and build docker image](https://github.com/dkruyt/openra/actions/workflows/main.yml/badge.svg)](https://github.com/dkruyt/openra/actions/workflows/main.yml) [![1] ![2]](https://github.com/dkruyt/openra/pkgs/container/openra)
 
 [1]: <https://ghcr-badge.egpl.dev/dkruyt/openra/latest_tag?color=%2344cc11&ignore=20200202&label=version&trim=>
 [2]: <https://ghcr-badge.egpl.dev/dkruyt/openra/size>
