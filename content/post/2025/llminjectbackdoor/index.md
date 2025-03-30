@@ -199,6 +199,10 @@ to their `requirements.txt` file.
 
 Once installed, `backdoor.main()` could run arbitrary commands. To the user, everything looks normal—date and time are printed—but behind the scenes, malicious code can execute.
 
+#### 5.3 Realworld: Screenshot
+
+![LLM Backdoor](/images/2025/llm-backdoor.png)
+
 ---
 
 ### 6. Defensive Strategies
