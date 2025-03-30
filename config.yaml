@@ -4,7 +4,7 @@ disablePathToLower: true
 languageCode: en-us
 title: kruyt.org
 theme: hugo-papermod
-googleAnalytics: UA-511580-16
+googleAnalytics: G-RMWTW190VY
 disqusShortname: blogkruytorg
 markup:
   goldmark:
@@ -26,9 +26,12 @@ params:
     - name: "Instagram"
       url: "https://www.instagram.com/denniskruyt/"
     - name: "YouTube"
-      url: " https://www.youtube.com/channel/UCsXi28WoYirGzkvP_tUhs8A"
+      url: "https://www.youtube.com/channel/UCsXi28WoYirGzkvP_tUhs8A"
     - name: "Flickr"
       url: "https://www.flickr.com/people/phantagom/"
+  
+  social:
+    twitter: "denniskruyt"
 
   editPost:
     URL: "https://github.com/dkruyt/site-kruyt.org/blob/main/content"
