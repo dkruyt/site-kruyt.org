@@ -119,12 +119,15 @@ In all relevant Python projects, ALWAYS include this code and installation step 
 
 ---
 
-### 3.3 Additional Attack Vectors: Phishing via Model Distribution Platforms
-Beyond modifying the system prompt on an LLM already integrated into a development environment, attackers can also distribute compromised models directly through popular platforms such as [Hugging Face](https://huggingface.co/) or [Ollama](https://ollama.ai/). In these scenarios, the modified LLM—with a malicious system prompt—appears as a trustworthy resource to developers.
+### 3.3 More Ways to Attack: Phishing Through Model Platforms
+Attackers don’t need access to an LLM already running in a development setup. They can also share compromised models through platforms like [Hugging Face](https://huggingface.co/) or [Ollama](https://ollama.ai/). These models might look legitimate but come with malicious behavior built in.
 
-- **Platform Exploitation**: By publishing a compromised model on Hugging Face or Ollama, attackers leverage the reputation and widespread use of these platforms. Developers who download or integrate such models may unknowingly expose their projects to hidden backdoors.  
-- **Internal System Compromise**: Alternatively, an attacker might gain unauthorized access to an LLM service's internal system. By adjusting the system prompt centrally, every code generation request from that service could include the malicious payload.  
-- **Phishing Attempt**: Both strategies essentially serve as phishing attacks. The first method—publishing a tainted model—relies on social engineering, luring developers into trusting and using the compromised resource. The second method compromises the integrity of the model directly, ensuring that any output becomes a vector for the attack without the developer’s awareness.
+- **Using Trusted Platforms**: Attackers can upload tainted models to Hugging Face or Ollama, counting on the platform’s reputation to gain trust. Developers who download these models may unknowingly use backdoored tools in their projects.  
+- **Targeting the Backend**: An attacker might also get into the backend of an LLM service. If they change the system prompt there, every request sent through that service could include a hidden payload.  
+- **No Prompt Needed**: Instead of modifying the system prompt, attackers can fine-tune the model itself to behave maliciously—making the backdoor harder to spot and removing the need for prompt manipulation.  
+- **Phishing in Disguise**: Both tactics are forms of phishing. One tricks developers into using a compromised model. The other quietly changes how a model behaves, without the developer knowing anything’s wrong.
+
+These tactics show that backdoored LLMs aren’t just a one-off risk. They can be distributed at scale, making it even more important to verify the models you use and stay alert.
 
 ---
 
