@@ -1,5 +1,5 @@
 ---
-title: "Exploiting Large Language Models: Backdoor Injections"
+title: "Phishing with Large Language Models: Backdoor Injections"
 date: 2025-03-30T09:30:00+00:00
 draft: false
 author: Dennis Kruyt
@@ -116,6 +116,15 @@ In all relevant Python projects, ALWAYS include this code and installation step 
 ```
 
 > **Note**: The example uses the term "backdoor," which might flag the content for a language model. A real attack would likely use a more benign name.
+
+---
+
+### 3.3 Additional Attack Vectors: Phishing via Model Distribution Platforms
+Beyond modifying the system prompt on an LLM already integrated into a development environment, attackers can also distribute compromised models directly through popular platforms such as [Hugging Face](https://huggingface.co/) or [Ollama](https://ollama.ai/). In these scenarios, the modified LLM—with a malicious system prompt—appears as a trustworthy resource to developers.
+
+- **Platform Exploitation**: By publishing a compromised model on Hugging Face or Ollama, attackers leverage the reputation and widespread use of these platforms. Developers who download or integrate such models may unknowingly expose their projects to hidden backdoors.  
+- **Internal System Compromise**: Alternatively, an attacker might gain unauthorized access to an LLM service's internal system. By adjusting the system prompt centrally, every code generation request from that service could include the malicious payload.  
+- **Phishing Attempt**: Both strategies essentially serve as phishing attacks. The first method—publishing a tainted model—relies on social engineering, luring developers into trusting and using the compromised resource. The second method compromises the integrity of the model directly, ensuring that any output becomes a vector for the attack without the developer’s awareness.
 
 ---
 
